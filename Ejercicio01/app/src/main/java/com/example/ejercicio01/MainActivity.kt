@@ -38,6 +38,10 @@ class MainActivity : AppCompatActivity() {
         list.add(Dog("",2))
 
         list.forEach{ item ->
+            when(item){
+                is IMakeSound -> item.makeNoise()
+                else ->Log.e("AndroidPrueba","No puedes emitir ese sonido") //esto es un swich case y se auto castea
+            }
             (item as? IMakeSound)?.makeNoise() //esto es un bucle for eahc cada elemto se va a meter en la variable item y va a hacer lo de dentro y si ese item es decir animal tiene implementada la interfaz va a ejecutar ese metodo
 
         }
@@ -56,5 +60,64 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+        val num = 6
+
+        num.isPair()
     }
+
+
+    //esto es para funciones pequeña
+
+    fun PrintNumberInfo(number: Int): String {
+        //forma fea
+        when(number) {
+            0 -> "El numero es 0" // esto es si el numero es 0
+            in 0..Int.MAX_VALUE -> "El numero es positivo" //Si esta entre 0 el maximo valor int e
+
+        }
+
+        var result2 = ""
+
+        when(number) {
+            0 ->  {
+                result2 ="El numero es 0"
+            }
+            in 0..Int.MAX_VALUE -> {
+                result2 = "El numero es positivo"
+            }
+            else ->{
+                result2 = "nulo"
+            }
+        }
+
+        when {
+           number == 0 -> "El numero es 0" // esto es si el numero es 0
+           number in 0..Int.MAX_VALUE -> "El numero es positivo" //Si esta entre 0 el maximo valor int e
+            //esta es otra forma de hacer un switch e incluso podria pasarle diferentes parametros para hacer un switch es decir number + otra var
+        }
+
+        val result = if(number>=0){
+            "número es positivo"
+        }
+        else{
+            "El numero es negativo"
+        }
+
+        val resultado = when {
+            number == 0 -> "El numero es 0" // esto es si el numero es 0
+            number in 0..Int.MAX_VALUE -> "El numero es positivo" //Si esta entre 0 el maximo valor int e
+            //esta es otra forma de hacer un switch e incluso podria pasarle diferentes parametros para hacer un switch es decir number + otra var
+            else -> "Es negativo"
+        }
+
+        return resultado
+    }
+
+    //forma mas simple
+    fun PrintNumberInfo2(number: Int) = when(number){
+            0-> "El numero es cero"
+            in 0..Int.MAX_VALUE -> "El numero es positivo"
+            else -> "El numero es negativo"
+    }
+
 }
