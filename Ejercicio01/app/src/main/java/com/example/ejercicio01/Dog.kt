@@ -1,0 +1,9 @@
+package com.example.ejercicio01
+
+import android.util.Log
+
+class Dog(name :String, age :Int) : Animal(name , age), IMakeSound {
+    override fun makeNoise() {
+        Log.e("Sonido","Guau!")
+    }
+}
