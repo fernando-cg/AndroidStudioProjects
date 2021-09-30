@@ -39,6 +39,22 @@ class MainActivity : AppCompatActivity() {
 
         list.forEach{ item ->
             (item as? IMakeSound)?.makeNoise() //esto es un bucle for eahc cada elemto se va a meter en la variable item y va a hacer lo de dentro y si ese item es decir animal tiene implementada la interfaz va a ejecutar ese metodo
+
         }
+
+        for(item in list){ //esto es otra forma de poner un for each
+            if(item is Cat){
+                break //Con esto se parte el bucle
+            }
+        }
+
+        for(i in 0..10){ //de 0 a 10 incluidos
+
+        }
+
+        for(item in 0 until 10){ //el until es para que el 10 no lo tenga en cuenta
+
+        }
+
     }
 }
