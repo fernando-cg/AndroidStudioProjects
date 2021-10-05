@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 
+//HolaMundo -> variable para Codigo
+//Hola_Mundo ->Variable para vistas
 class MainActivity : AppCompatActivity() {
     lateinit var test: String // Se inicia de forma tardia y no puede ser nunca nulo, antes de usarla hay que inicianizarlo
     override fun onCreate(savedInstanceState: Bundle?) {
