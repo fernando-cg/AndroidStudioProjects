@@ -10,4 +10,8 @@ class Car(
 ) : Vehicle(
     rack, plate,
     dniClient, dniMechanic, nHours
-)
+){
+    fun setNhours(hours: Int){
+        this.nHours = hours
+    }
+}

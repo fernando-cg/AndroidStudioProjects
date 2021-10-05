@@ -6,4 +6,9 @@ open class Vehicle(
     val dniClient: String,
     var dniMechanic: String,
     var nHours: Int
-)
+){
+    fun reparado() = when(this.nHours){
+        0-> true
+        else -> false
+    }
+}

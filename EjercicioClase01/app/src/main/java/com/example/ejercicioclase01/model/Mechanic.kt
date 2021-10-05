@@ -8,4 +8,9 @@ class Mechanic(
     dni: String,
     var mechanicId: String,
     var dateFrom: Date
-) : Person(name, surname, dni)
+) : Person(name, surname, dni){
+
+    fun arreglarcoche(car: Car){
+        car.setNhours(0)
+    }
+}
