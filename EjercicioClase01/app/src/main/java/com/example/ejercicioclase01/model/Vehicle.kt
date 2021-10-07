@@ -7,8 +7,5 @@ open class Vehicle(
     var dniMechanic: String,
     var nHours: Int
 ){
-    fun reparado() = when(this.nHours){
-        0-> true
-        else -> false
-    }
+    fun isRepaired() = nHours == 0
 }

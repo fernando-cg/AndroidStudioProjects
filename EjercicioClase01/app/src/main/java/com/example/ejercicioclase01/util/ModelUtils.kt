@@ -1,42 +1,72 @@
 package com.example.ejercicioclase01.util
 
-import com.example.ejercicioclase01.model.Car
-import com.example.ejercicioclase01.model.Client
-import com.example.ejercicioclase01.model.Mechanic
-import com.example.ejercicioclase01.model.Motorbike
+import com.example.ejercicioclase01.model.*
 import java.text.SimpleDateFormat
 import java.util.*
 
 val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
-fun initClientList(): List<Client> {
+fun generatePersonList(): List<Person> {
+    val result = mutableListOf<Person>()
+    //- Personas
+    result.add(Client(name ="84962675P", id =1, promotion = 20)) //asi se envian las variables bien esto es para cuando se envian parametros y a donde va cada cosa
+    result.add(Client("79956421A", "Sergi", "Agullo", 2))
+    result.add(Client("04297948F", "Xabier", "Ribera", 3))
+    result.add(Client("64407574F", "Montse", "Miranda", 4))
+    result.add(Client("22094758S", "Amanda", "Ferrer", 5, 50))
+    result.add(Client("43065983R", "Valentin", "Saldaña", 6))
 
-    val clientList = mutableListOf<Client>()
-    clientList.add(Client("Desiree","Carpio","84962675P",1,20))
-
-    return clientList
+    //- Mecánicos
+    result.add(Mechanic("12631515F", "Marina", "Yague", "7AFK7ND8", dateFormat.parse("10/05/2009")?: Calendar.getInstance().time))
+    result.add(Mechanic("47700725J", "Ernesto", "Bermejo", "FC57BK8H",dateFormat.parse("10/05/2009")?: Calendar.getInstance().time)))
+    result.add(Mechanic("85989322G", "Isaac", "Andrade", "DVJWHN42",dateFormat.parse("10/05/2009")?: Calendar.getInstance().time) ))
+    return result
 }
 
-fun initmechanicList(): List<Mechanic> {
+fun generateVehicleList(): List<Vehicle> {
+    val result = mutableListOf<Vehicle>()
+    //- Motos
+    result.add(Motorbike(1, "3583 YXN", "84962675P", "12631515F", 15, true))
+    result.add(Motorbike(2, "2981 CDC", "79956421A", "12631515F", 10, false))
+    result.add(Motorbike(3, "5054 RKX", "79956421A", "47700725J", 24, false))
+    result.add(Motorbike(4, "6468 QCQ", "04297948F", "47700725J", 4, false))
+    result.add(Motorbike(5, "9951 RFB", "64407574F", "47700725J", 8, false))
 
-    val mechanicList = mutableListOf<Mechanic>()
-    mechanicList.add(Mechanic("Marina" ,"Yague","12631515F","7AFK7ND8", dateFormat.parse("10/05/2009")?: Calendar.getInstance().time)) //si la fecha primera es nula pon esta fecha por defecto -> operador Elvis
-
-    return mechanicList
+    //- Coches
+    result.add(Car(16, "7398 LJZ", "22094758S", "12631515F", 20, 3))
+    result.add(Car(17, "9967 MMK", "84962675P", "47700725J", 72, 5))
+    result.add(Car(18, "0416 SPM", "64407574F", "85989322G", 10, 5))
+    result.add(Car(19, "0854 FXR", "43065983R", "85989322G", 5, 3))
+    result.add(Car(10, "9163 MRG", "79956421A", "85989322G", 19, 5))
+    return result
 }
 
-fun initCarList(): List<Car> {
+fun toRepair(vehicleList: List<Vehicle>, personList: List<Person>) :Map<Client, List<Vehicle>>{ //Esperar a que fran explique esto
 
-    val CarList = mutableListOf<Car>()
-    CarList.add(Car(6 ,"7398 LJZ","22094758S","12631515F",20,3))
+    val dniWithVehicleList = vehicleList.filter { vehicle ->
+        vehicle.isRepaired().not()
+    }.groupBy { vehicle ->
+        vehicle.dniClient
+    }
 
-    return CarList
+    return dniWithVehicleList.mapKeys { entry ->
+        personList.find { person ->
+            person is Client && person.dni == entry.key
+        } as? Client ?: makeEmptyClient()
+    }.filter { entry -> entry.key.dni != "" }
 }
 
-fun initBikeList(): List<Motorbike> {
+fun makeEmptyClient() = Client("", "", "", 0,null)
 
-    val MotorbikeList = mutableListOf<Motorbike>()
-    MotorbikeList.add(Motorbike(1 ,"3583 YXN","84962675P","12631515F",15,true))
+fun lessHours(mechanics:List<Mechanic>):Mechanic{
 
-    return MotorbikeList
+    var mechanic = mechanics[0]
+    var minH = 0
+    for(i in mechanics){
+        if(mechanic.)
+    }
+}
+
+fun ClientPrize(){
+
 }

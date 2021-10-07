@@ -122,4 +122,41 @@ class MainActivity : AppCompatActivity() {
             else -> "El numero es negativo"
     }
 
+    //lista -> es una arraylist basicamente y puede ser mutable o inmutable
+    //set -> es una lista que no va a tener elementos repetidos
+    //map ->es un clave indice
+
+    fun mapa(){
+        val map = mutableMapOf<Int , List<Person>>() //aqui esto diciendo que un int va a tener asignado una persona
+        map[1] = listOf() //aqui añado y vinculo
+        map.put(2, listOf())
+        map.put(3, listOf())
+        map.put(4, listOf())
+
+        map[4]?.get(0) //para que nos devuelva el valor si no es nulo
+        map.containsKey(5) //para ver si existe la id 5
+
+        map.keys//listado de claves que tenga
+
+        map.values//listado de valores que tenga
+
+        //Operadores sobre colecciones : Transformadores ,Filtros, Agrupadores , Ordenación, Obtener un unico objeto, Agregacion : Suma,resta,comparacion,
+
+        val list = mutableListOf<Int>()
+        list.add(1)
+        list.add(2)
+        list.add(3)
+        list.add(4)
+        list.first() //para que me de el primer elemento
+        list.filter { it %2 == 0 } //Esto es para filtrar con una condicion it es como en un for each la i que pongo
+        list.filterNot { it %2 == 0 } //esto nos devuelve lo contrario a la condicion
+        list.any{it %2 == 0} // esto devuelve true o falso dependiendo de si alguna vez se cumple esa condicion
+        list.all{it %2 == 0} //esto devuelve true o falso dependiendo de si todos  cumplen esa condicion
+        list.sum() //esto es para que me sume la lista completa
+        list.filter { it %2 == 0 }.sum() //esto es para que suma los numeros pares
+        list.groupBy{it %2 == 0}// esto me agrupa los que cumplan la condicion y me pone como false los que no retorna un mapa
+        var lista = list.groupBy{it %2 == 0}[true] // estoy diciendo que del mapa que me devuelve que me coja los valores que son true y me los meta en esa variable esto se guarda como lista
+
+    }
+
 }
