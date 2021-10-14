@@ -157,6 +157,68 @@ class MainActivity : AppCompatActivity() {
         list.groupBy{it %2 == 0}// esto me agrupa los que cumplan la condicion y me pone como false los que no retorna un mapa
         var lista = list.groupBy{it %2 == 0}[true] // estoy diciendo que del mapa que me devuelve que me coja los valores que son true y me los meta en esa variable esto se guarda como lista
 
+        //Para ordenar al reves es : //Sort by descending
+
+        //Colecciones-----------------------------------------
+
+        val mapInt = mapOf( //esta es una forma de crear un mapa estoy dando un valor int(clave) a un valor(valor)int
+            1 to 2,
+            2 to 3
+        )
+
+        //metodo filter
+        val list2 : List<String> = listOf("Test 1","Test 2","Test 3","Test 4")
+        val filterList = list2.filter { item -> item.contains("2") } // item es un iterador es decir cada elemento de la lista lo de dentro es una funcion lambda y el contains mira si la lista contiene algun 2 lo que hay que meterle es una condicion para que devuelva true o false
+        val filterList2 = list2.filterNot { item -> item.contains("2") || item.contains("3") } //lo contrario a la condición + concatenar dos condiciones
+
+        //metodo map
+        var listPerson = listOf<Person>(
+            Person("nn","ss",12),
+            Person("nnn","sss",14),
+            Person("jj","ll",18)
+        )
+       var listage = listPerson.map {item-> item.edad  } //esto crea una lista pero con los valores de la edad de los estudiantes 0-12,1-14,2-18
+
+        listage.joinToString("-") // Esto es para unificar la lista en un String y el separator es para separar los diferentes elementos
+
+        //Objeto pair
+        val pair1 = Pair("Caniche","Marron") //Esto es una pareja de valores en este caso de Strings Pair
+
+        val color = listOf(
+            "marron",
+            "Amarillo",
+            "Azul"
+            )
+        val animal = listOf(
+            "Perro",
+            "Gato",
+            "Pajaro"
+        )
+
+        color.zip(animal) //Asi se hace y esto si las listas son de diferentes tamaños une hasta el final de la lista mas pequeña
+
+        listPerson.associateWith { person-> person.edad } //Esto lo que me crea es un map con clave edad en este caso + el objeto
+
+        val mapGropBy = listPerson.groupBy {item-> item.edad} // Esto crea un map en el cual vamos a poder agrupar por lo que queramos nos da un map con un valor con los agrupados y otro con los que no
+
+        val numset = listOf(setOf(1,2,3),setOf(4,5,6),setOf(7,8,9))
+        numset.flatten() // para unir lista
+
+        listage.fold(10){item -> item * 2} //va a sumar pero con una clave el valor inicial es una suma que se le va a sumar a cada elemento antes de multiplicar
+
+        list.any{it -> it<0} //Si la condición se cumple en alguno me devuelve true si no false
+        list.all{it -> it<0} //Si la condición se cumple en todos me devuelve true si no false
+        list.none{it -> it<0} //Si la condición no se cumple en ninguno me devuelve true si no false
+        list.find{it -> it<0} //Busca algun elemento que cumpla esta condicion
+        list.firstOrNull{it -> it<0}//Encuentra el primero que cumpla esta condicion o devulve nulo
+        list.lastOrNull(){it -> it<0} //Encuentra el ultimo que cumpla esta condición
+        list.maxOrNull() //nos devuelve el maximo
+        list.sort() //esto es para ordenar por defecto
+        list.sortedBy { it } //esto es para poner el campo por el que se quiere ordenar
+        list.any{it -> it<0} //nos devuelve el minimo
+        list.count{it-> it<0} // te cuenta los que cumplan una contidad
+
+
     }
 
 }
