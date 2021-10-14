@@ -217,7 +217,7 @@ class MainActivity : AppCompatActivity() {
         list.sortedBy { it } //esto es para poner el campo por el que se quiere ordenar
         list.any{it -> it<0} //nos devuelve el minimo
         list.count{it-> it<0} // te cuenta los que cumplan una contidad
-
+        list.random() //Nos da un elemento random de la array
 
     }
 
