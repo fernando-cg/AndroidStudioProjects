@@ -39,7 +39,7 @@ fun generateMobileAndTabletList(): List<Device> = listOf(Mobile(1,349.97,"Xiaomi
     Tablet(11,699.00,"Huawei","P40",false),
     Tablet(12,229.50,"Xiaomi","Note 9 Pro",false)
 
-)
+)//Lista de Dispositivos
 
 /**
  * TODO Ejercicio 2.c
@@ -54,7 +54,7 @@ fun generateOrderList(): MutableList<Order> = mutableListOf(
     Order(7, mapOf(10 to 1),"89124427W","45095419D",649.00),
     Order(8, mapOf(2 to 1,5 to 2, 6 to 1,11 to 1),"41371814N","73155983K",2494.99),
     Order(9, mapOf(9 to 2),"02110836B","73155983K",1759.00)
-)
+)//Lista de pedidos
 
 /**
  * TODO Ejercicio 4
@@ -63,13 +63,14 @@ fun updateClientPoints(clientList: List<Client>, orderList: List<Order>) {
     for(i in orderList){
 
         clientList[clientList.indexOf(clientList.find { it-> it.dni==i.dnic })].points += i.points //Primero busco el elemento que tiene el mismo dni depues el index de ese elemento en la lista y ya por ultimo cogo ese elemento y le sumo los puntos de la lista
-    }
+    }//Recorro la lista y voy comparando los dni gracias a la propiedad find que me los encuentra en la lista
 }
 
 /**
  * TODO Ejercicio 6
  */
-fun bestSeller(sellerList: List<Seller>, orderList: List<Order>): Seller? { //Preguntar este a ver
+fun bestSeller(sellerList: List<Seller>, orderList: List<Order>): Seller? { //Este nos encuentra el mejor vendedor para ello agrupo por dni
+// Sumo todos los precios y despues lo meto en un sorted map para que se ordene
 
     var mapSeller = orderList.groupBy { it -> it.dniv }
 
@@ -91,4 +92,4 @@ fun bestSeller(sellerList: List<Seller>, orderList: List<Order>): Seller? { //Pr
 /**
  * TODO Ejercicio 7
  */
-fun orderClientByAccumulatedPoints(clientList: List<Client>): List<Client> = clientList.sortedByDescending { it.points } //Preguntar la parte que dice es necesario noseq del ejercicio 4
+fun orderClientByAccumulatedPoints(clientList: List<Client>): List<Client> = clientList.sortedByDescending { it.points } //Utilizo sortedby para ordenar por el campo que me interesa
