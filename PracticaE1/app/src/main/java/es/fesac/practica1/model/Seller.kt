@@ -17,7 +17,7 @@ class Seller(dni: String, name: String, surname: String, born: Date, var idS:Lon
         var totalPrize = 0.0
 
         for(i in devices){
-            totalPrize += i.key.prize
+            totalPrize += i.key.prize*i.value //COn esto multiplicamos el numero de veces de cada elemento por el precio
         }
 
         val order = Order((Math.random()*1000).toLong(),devices.mapKeys { it.key.id },client.dni,this.dni,totalPrize)
