@@ -77,9 +77,7 @@ fun bestSeller(sellerList: List<Seller>, orderList: List<Order>): Seller? { //Es
     var mapPrize = mutableMapOf<Double,Seller>()
 
     for(i in mapSeller){
-        i.value.sumOf { it -> it.prize }
         mapPrize[i.value.sumOf { it -> it.prize }] = sellerList[sellerList.indexOf(sellerList.find { it -> it.dni == i.value[0].dniv })]
-
     }
 
     val result = mapPrize.toSortedMap()

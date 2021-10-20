@@ -37,6 +37,5 @@ class MainActivity : AppCompatActivity() {
         // NO TOCAR NADA DE ESTE CÓDIGO
         var retorno = orderClientByAccumulatedPoints(personList.filterIsInstance<Client>())
 
-
     }
 }
