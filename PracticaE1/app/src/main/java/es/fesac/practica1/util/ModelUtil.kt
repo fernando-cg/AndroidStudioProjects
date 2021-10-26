@@ -3,24 +3,25 @@ package es.fesac.practica1.util
 import android.text.TextUtils.indexOf
 import es.fesac.practica1.model.*
 import java.text.SimpleDateFormat
+import java.util.*
 
 val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
 /**
  * TODO Ejercicio 2.a
  */
-fun generateClientAndSellerList(): List<Person> = listOf(Client("62062198X","Marc","Galera",dateFormat.parse("14/06/1991"),1,0),
-    Client("89124427W","Noel","Romo",dateFormat.parse("03/05/1990"),2,0),
-    Client("30551701L","Jacobo","Torre",dateFormat.parse("18/01/1991"),3,0),
-    Client("88289642W","Nerea","Hernández",dateFormat.parse("28/08/2002"),4,0),
-    Client("02110836B","Ainara","Melgar",dateFormat.parse("26/11/1986"),5,0),
-    Client("41371814N","Sergio","Prat",dateFormat.parse("06/07/1983"),6,0),
-    Seller("79711552S","Almudena","Caro",dateFormat.parse("10/06/1993"),1),
-    Seller("45095419D","Ingrid","Carbonell",dateFormat.parse("03/07/1992"),2),
-    Seller("43702270Q","Saray","Garriga",dateFormat.parse("28/01/1995"),3),
-    Seller("60479732J","Jaume","Berrocal",dateFormat.parse("21/05/2001"),4),
-    Seller("73155983K","Ángel","Chacón",dateFormat.parse("20/10/1988"),5),
-    Seller("88154456X","Hugo","Bolaños",dateFormat.parse("11/03/1985"),6)
+fun generateClientAndSellerList(): List<Person> = listOf(Client("62062198X","Marc","Galera",dateFormat.parse("14/06/1991"),1,0), //Usamos operador elvis para decirle que si da error el parseo que me coja la fecha de hoy
+    Client("89124427W","Noel","Romo",dateFormat.parse("03/05/1990")?: Calendar.getInstance().time,2,0),
+    Client("30551701L","Jacobo","Torre",dateFormat.parse("18/01/1991")?: Calendar.getInstance().time,3,0),
+    Client("88289642W","Nerea","Hernández",dateFormat.parse("28/08/2002")?: Calendar.getInstance().time,4,0),
+    Client("02110836B","Ainara","Melgar",dateFormat.parse("26/11/1986")?: Calendar.getInstance().time,5,0),
+    Client("41371814N","Sergio","Prat",dateFormat.parse("06/07/1983")?: Calendar.getInstance().time,6,0),
+    Seller("79711552S","Almudena","Caro",dateFormat.parse("10/06/1993")?: Calendar.getInstance().time,1),
+    Seller("45095419D","Ingrid","Carbonell",dateFormat.parse("03/07/1992")?: Calendar.getInstance().time,2),
+    Seller("43702270Q","Saray","Garriga",dateFormat.parse("28/01/1995")?: Calendar.getInstance().time,3),
+    Seller("60479732J","Jaume","Berrocal",dateFormat.parse("21/05/2001")?: Calendar.getInstance().time,4),
+    Seller("73155983K","Ángel","Chacón",dateFormat.parse("20/10/1988")?: Calendar.getInstance().time,5),
+    Seller("88154456X","Hugo","Bolaños",dateFormat.parse("11/03/1985")?: Calendar.getInstance().time,6)
     ) //Funcion Primera lista de personas
 
 /**
