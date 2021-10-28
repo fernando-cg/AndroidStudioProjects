@@ -6,4 +6,9 @@
     <string name="do_you_not_have_an_account_sing_up">¿No tienes cuenta? Regístrate</string>
     <string name="i_forgot_my_password">Olvidé mi contraseña</string>
     <string name="enter">ENTRAR</string>
+    <string name="register">Registro</string>
+    <string name="repeat_pass">Repetir contraseña</string>
+    <string name="privacity">Al registrarse, acepta la política de privacidad y términos de uso</string>
+    <string name="create">Crear cuenta</string>
+    <string name="exist">¿Tienes ya una cuenta? Inicia sesión</string>
 </resources>

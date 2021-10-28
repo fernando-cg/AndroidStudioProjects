@@ -2,6 +2,169 @@
 <!-- TODO Ejercicios 2.3 -->
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <TextView
+        android:id="@+id/reg"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:text="@string/register"
+        android:textColor="@color/darkness"
+        android:textSize="@dimen/title"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/top_d"/>
+
+
+    <ImageView
+        android:layout_width="@dimen/I_size"
+        android:layout_height="@dimen/I_size"
+
+
+        android:layout_marginEnd="@dimen/x_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/top_d"
+
+        android:src="@drawable/ic_close"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/u_o_e"
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/top_d"
+
+        app:boxBackgroundColor="@color/B_color"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reg">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/user_or_email"
+            android:textColor="@color/darkness"
+            android:textColorHint="@color/hint"
+            android:textSize="@dimen/t_box" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email"
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between"
+
+        app:boxBackgroundColor="@color/B_color"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/u_o_e">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/email"
+            android:textColor="@color/darkness"
+            android:textColorHint="@color/hint"
+            android:textSize="@dimen/t_box" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/pass"
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="@dimen/between"
+        app:boxBackgroundColor="@color/B_color"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@id/email">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:textColor="@color/darkness"
+            android:textColorHint="@color/hint"
+            android:textSize="@dimen/t_box" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/r_pass"
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between"
+
+        app:boxBackgroundColor="@color/B_color"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pass">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:hint="@string/repeat_pass"
+            android:textColor="@color/darkness"
+            android:textColorHint="@color/hint"
+            android:textSize="@dimen/t_box" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <CheckBox
+        android:id="@+id/check_privacity"
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+
+        android:paddingStart="20dp"
+
+        android:layout_marginTop="@dimen/top_d"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/r_pass"
+        android:textSize="@dimen/L_text"
+        android:textAlignment="textStart"
+        android:text="@string/privacity"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/c_account"
+
+        android:layout_width="@dimen/width"
+        android:layout_height="wrap_content"
+
+
+        android:background="@drawable/gradient"
+        android:text="@string/create"
+        android:textColor="@color/black"
+        android:textSize="@dimen/buton_letter"
+
+        android:layout_marginTop="@dimen/top_d"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_privacity" />
+
+
+    <TextView
+        android:id="@+id/forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/between"
+
+        android:text="@string/exist"
+        android:textColor="@color/darkness"
+        android:textSize="@dimen/L_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/c_account" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

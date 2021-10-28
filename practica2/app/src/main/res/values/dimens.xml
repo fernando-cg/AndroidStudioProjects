@@ -3,4 +3,10 @@
     <dimen name="top_d">24dp</dimen>
     <dimen name="between">16dp</dimen>
     <dimen name="width">370dp</dimen>
+    <dimen name="x_margin">20dp</dimen>
+    <dimen name="title">22sp</dimen>
+    <dimen name="t_box">16sp</dimen>
+    <dimen name="L_text">14sp</dimen>
+    <dimen name="I_size">20dp</dimen>
+    <dimen name="buton_letter">20sp</dimen>
 </resources>

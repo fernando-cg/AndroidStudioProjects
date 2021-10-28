@@ -6,5 +6,11 @@
     <string name="do_you_not_have_an_account_sing_up">Do you not have an account? Sing Up</string>
     <string name="i_forgot_my_password">I forgot my password</string>
     <string name="enter">ENTER</string>
+    <string name="register">Register</string>
+    <string name="email" translatable="false">Email</string>
+    <string name="repeat_pass">Repeat Password</string>
+    <string name="privacity">By registering, I accept the Privacy Policy and the Terms of use of the application</string>
+    <string name="create">Create account</string>
+    <string name="exist">Already have an account? Log in</string>
     <!-- TODO Ejercicios 2.2 y 2.3 -->
 </resources>
