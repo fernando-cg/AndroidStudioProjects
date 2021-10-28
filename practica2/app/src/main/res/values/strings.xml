@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name" translatable="false">practica2</string>
+    <string name="log">Init Session</string>
+    <string name="user_or_email">User or email</string>
+    <string name="password">Password</string>
+    <string name="do_you_not_have_an_account_sing_up">Do you not have an account? Sing Up</string>
+    <string name="i_forgot_my_password">I forgot my password</string>
+    <string name="enter">ENTER</string>
+    <!-- TODO Ejercicios 2.2 y 2.3 -->
+</resources>

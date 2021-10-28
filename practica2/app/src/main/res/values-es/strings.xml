@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log">Iniciar sesión</string>
+    <string name="user_or_email">Usuario o Email</string>
+    <string name="password">Contraseña</string>
+    <string name="do_you_not_have_an_account_sing_up">¿No tienes cuenta? Regístrate</string>
+    <string name="i_forgot_my_password">Olvidé mi contraseña</string>
+    <string name="enter">ENTRAR</string>
+</resources>
