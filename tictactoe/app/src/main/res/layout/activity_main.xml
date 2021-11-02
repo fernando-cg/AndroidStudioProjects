@@ -29,6 +29,7 @@
         android:src="@drawable/ic_tic_tac_toe"
         />
     <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/multy"
         android:layout_width="0dp"
         android:background="@drawable/bg_gradient"
         android:layout_height="wrap_content"
