@@ -121,4 +121,12 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
 
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@drawable/gradient3"
+        app:layout_constraintTop_toBottomOf="@id/register"
+        app:layout_constraintStart_toStartOf="@id/register"
+        app:layout_constraintEnd_toEndOf="@id/register"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
