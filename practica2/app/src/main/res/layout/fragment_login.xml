@@ -26,11 +26,11 @@
         android:layout_height="@dimen/I_size"
 
 
-        android:layout_marginEnd="@dimen/x_margin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="@dimen/top_d"
+        app:layout_constraintStart_toEndOf="@id/session"
 
+        android:layout_marginTop="@dimen/top_d"
         android:src="@drawable/ic_close"
     />
 

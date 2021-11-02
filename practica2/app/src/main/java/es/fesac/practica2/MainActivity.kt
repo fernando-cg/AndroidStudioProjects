@@ -9,9 +9,9 @@ class MainActivity : AppCompatActivity() {
         //setContentView(R.layout.activity_main)
 
         // Descomentar para probar layout de login y comentando la línea 9
-        //setContentView(R.layout.fragment_login)
+        setContentView(R.layout.fragment_login)
 
         // Descomentar para probar layout de registro y comentando la línea 9
-        setContentView(R.layout.fragment_register)
+        //setContentView(R.layout.fragment_register)
     }
 }
