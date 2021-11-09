@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/game__image__cross"
+        android:layout_width="@dimen/board_size"
+        android:layout_height="@dimen/board_size"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/game__image__circle"
+        app:layout_constraintBottom_toBottomOf="@id/game__image__circle"
+        app:layout_constraintStart_toEndOf="@id/game__lavel__points"
+        />
+
+    <ImageView
+        android:id="@+id/game__image__circle"
+        android:layout_width="@dimen/board_size"
+        android:layout_height="@dimen/board_size"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/game__lavel__points"
+        app:layout_constraintBottom_toBottomOf="@id/game__lavel__points"
+        app:layout_constraintEnd_toStartOf="@id/game__lavel__points"
+        app:layout_constraintHorizontal_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/game__lavel__points"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/game_score_size"
+        app:layout_constraintEnd_toStartOf="@id/game__image__cross"
+        app:layout_constraintStart_toEndOf="@id/game__image__circle"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="@dimen/margin_vertical"
+        tools:text="3 : 0"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,4 +6,8 @@
     <dimen name="default_radius">8dp</dimen>
     <dimen name="botton_space">8dp</dimen>
     <dimen name="margin_horizontal">24dp</dimen>
+    <dimen name="view_size">1dp</dimen>
+    <dimen name="board_size">60dp</dimen>
+    <dimen name="game_score_size">50sp</dimen>
+    <dimen name="margin_vertical">24dp</dimen>
 </resources>
