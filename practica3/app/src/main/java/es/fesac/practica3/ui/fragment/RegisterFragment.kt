@@ -24,8 +24,11 @@ class RegisterFragment : Fragment() {
     }
 
     private fun setUpViews() {
+        fragmentManager?.fragments
         // TODO 3.2: Eventos de click y sus correspondientes navegaciones
-
+        binding.registerImgClose.setOnClickListener { getNavController()?.navigateUp() }
+        binding.registerBtnCreateAccount.setOnClickListener { getNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment()) }
+        binding.registerTextHaveAccount.setOnClickListener { getNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment()) }
     }
 
     private fun getNavController() = if (activity is NavHostActivity) {

@@ -25,7 +25,7 @@ class HomeFragment : Fragment() {
 
     private fun setUpViews() {
         // TODO 3.2: Eventos de click y sus correspondientes navegaciones
-
+        binding.homeImgLogout.setOnClickListener { getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment()) }
     }
 
     private fun getNavController() = if (activity is NavHostActivity) {

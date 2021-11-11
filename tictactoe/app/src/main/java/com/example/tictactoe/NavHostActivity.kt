@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
-import com.example.tictactoe.databinding.ActivityMainBinding
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import com.example.tictactoe.databinding.NavHostActivityBinding
 
-class MainActivity : AppCompatActivity() {
+class NavHostActivity : AppCompatActivity() {
+    /*
     //viewBInding para que funcionen los botones
     private lateinit var binding: ActivityMainBinding //creo una variable de este tipo esto es para vincular interfaz con codigo
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +34,21 @@ class MainActivity : AppCompatActivity() {
             binding.title.setTextColor(ResourcesCompat.getColor(resources,R.color.white,null))
             binding.title.text = "Manolo"
         }
+    }
+
+     */
+
+    private lateinit var binding : NavHostActivityBinding
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = NavHostActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    fun getNavController(): NavController? {
+        val navHostFragment = binding.navHostFragment as? NavHostFragment
+        return navHostFragment?.navController
     }
 
     override fun onStart() {

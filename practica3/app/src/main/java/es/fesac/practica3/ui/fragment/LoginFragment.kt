@@ -26,7 +26,9 @@ class LoginFragment : Fragment() {
 
     private fun setUpViews() {
         // TODO 3.2: Eventos de click y sus correspondientes navegaciones
-
+        binding.loginImgClose.setOnClickListener{ getNavController()?.navigateUp() }
+        binding.loginBtnEnter.setOnClickListener { getNavController()?.navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())}
+        binding.loginTextNoHaveAccount.setOnClickListener { getNavController()?.navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment()) }
     }
 
     private fun getNavController() = if (activity is NavHostActivity) {
