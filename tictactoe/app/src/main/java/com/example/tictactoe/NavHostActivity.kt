@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.tictactoe.databinding.NavHostActivityBinding
 
@@ -47,8 +48,7 @@ class NavHostActivity : AppCompatActivity() {
     }
 
     fun getNavController(): NavController? {
-        val navHostFragment = binding.navHostFragment as? NavHostFragment
-        return navHostFragment?.navController
+        return binding.navHostFragment.findNavController()
     }
 
     override fun onStart() {

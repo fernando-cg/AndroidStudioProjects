@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph.xml"
@@ -9,9 +9,18 @@
         android:id="@+id/homeFragment"
         android:name="com.example.tictactoe.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home"
-    <action
-        app:launchSingleTop="true">
-    </action>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_up"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_down"/>
     </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="com.example.tictactoe.fragment.GameFragment"
+        android:label="GameFragment"
+        tools:layout="@layout/fragment_game"/>
 </navigation>
