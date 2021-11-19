@@ -32,7 +32,10 @@ class HomeFragment : Fragment() {
 
     private fun setUpViews() {
         binding.mainBtnMultiplayer.setOnClickListener {
-            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment())
+            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment("multi"))
+        }
+        binding.mainBtnSinglePlayer.setOnClickListener{
+            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment("single"))
         }
     }
 

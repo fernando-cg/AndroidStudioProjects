@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">P4 &#8211; 2048</string>
+
+    <string name="login__init_session">Init session</string>
+    <string name="login__enter">Enter</string>
+    <string name="login__send_reset_password">I forgot my password</string>
+    <string name="login__no_have_account">You do not have an account? Sign up</string>
+
+    <string name="register__hint_user">User</string>
+    <string name="register__title">Register</string>
+    <string name="register__hint_email">Email</string>
+    <string name="register__hint_password">Password</string>
+    <string name="register__hint_password_repeat">Repeat password</string>
+    <string name="register__create_account">Create Account</string>
+    <string name="register__have_account">Already have an account? Log in</string>
+    <string name="register__accept_term">By registering, I accept the Privacy Policy and the Terms of use of the application</string>
+
+    <string name="content_description__ic_close">Icon close</string>
+
+    <string name="home__2">2</string>
+    <string name="home__0">0</string>
+    <string name="home__4">4</string>
+    <string name="home__8">8</string>
+    <string name="home__level_format">%1$d x %2$d</string>
+    <string name="home__record_format">High Score: %1$d</string>
+    <string name="home__go">Start</string>
+    <string name="home__show_statistics">Ranking</string>
+    <string name="home__achievements">Achievements</string>
+    <string name="home__share_description">See this game in Google Play!</string>
+
+    <string name="game__score">Score</string>
+    <string name="game__high_score">High Score</string>
+
+    <string name="level__record_format">Record: %1$d</string>
+</resources>

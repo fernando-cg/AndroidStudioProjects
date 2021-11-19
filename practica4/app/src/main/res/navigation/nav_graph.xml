@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="es.fesac.practica4.ui.fragment.RegisterFragment"
+        android:label="register_fragment"
+        tools:layout="@layout/fragment_register">
+        <!-- TODO: 4.1 Animaciones -->
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/registerFragment"
+            app:popUpToInclusive="true"
+
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_up"/>
+
+        <!-- TODO: 4.1 Animaciones -->
+        <action
+            android:id="@+id/action_registerFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/fade_in"/>
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="es.fesac.practica4.ui.fragment.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/fragment_login">
+
+        <!-- TODO: 4.1 Animaciones -->
+        <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/slide_up"/>
+
+        <!-- TODO: 4.1 Animaciones -->
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true"
+
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/fade_in"/>
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="es.fesac.practica4.ui.fragment.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/fragment_home">
+
+        <!-- TODO: 4.1 Animaciones -->
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/homeFragment"
+
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/fade_out"/>
+
+        <!-- TODO: 4.1 Animaciones -->
+        <action
+            android:id="@+id/action_homeFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+
+            app:exitAnim="@anim/fade_out"
+            app:enterAnim="@anim/fade_in"
+
+            app:popExitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"/>
+    </fragment>
+    <fragment
+        android:id="@+id/gameFragment"
+        android:name="es.fesac.practica4.ui.fragment.GameFragment"
+        android:label="GameFragment"
+        tools:layout="@layout/fragment_game">
+
+        <!-- TODO: 4.2 Argumento -->
+        <argument
+            android:name="level"
+            app:argType="string" />
+    </fragment>
+</navigation>

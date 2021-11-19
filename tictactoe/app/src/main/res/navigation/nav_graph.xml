@@ -15,6 +15,7 @@
             app:destination="@id/gameFragment"
             app:exitAnim="@anim/fade_out"
             app:enterAnim="@anim/slide_up"
+
             app:popEnterAnim="@anim/fade_in"
             app:popExitAnim="@anim/slide_down"/>
     </fragment>
@@ -22,5 +23,10 @@
         android:id="@+id/gameFragment"
         android:name="com.example.tictactoe.fragment.GameFragment"
         android:label="GameFragment"
-        tools:layout="@layout/fragment_game"/>
+        tools:layout="@layout/fragment_game">
+        <argument
+            android:name="gameType"
+            app:argType="string"
+            />
+    </fragment>
 </navigation>
