@@ -14,6 +14,8 @@ import kotlinx.coroutines.withContext
 class HomeViewModel : ViewModel() {
 
     // TODO: 4.3 ViewModel
+    private val loadLevelsMutableLiveData = MutableLiveData<List<LevelVo>>()
+    val loadLevelsLiveData:LiveData<List<LevelVo>> = loadLevelsMutableLiveData
 
     fun loadLevels() {
         viewModelScope.launch(Dispatchers.IO) {

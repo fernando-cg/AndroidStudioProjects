@@ -24,11 +24,17 @@ class HomeFragment : Fragment() {
     private var position = 0
 
     // TODO: 4.3 ViewModel
-    private val viewModel:
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // TODO: 4.3 ViewModel
+
+        viewModel.loadLevelsLiveData.removeObservers(this)
+        viewModel.loadLevelsLiveData.observe(this,{ listLevel ->
+            levelList = listLevel
+            setInfo() //he puesto esto aqui par que cuando inicie el programa no se quede en blanco el hueco de los niveles
+        })
     }
 
     override fun onCreateView(
@@ -47,7 +53,7 @@ class HomeFragment : Fragment() {
         }
         binding.homeBtnGo.setOnClickListener {
             // TODO: 4.2 Argumento
-            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment("Hola"))
+            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment(levelList[position].cellsNumber.toString()))
         }
         binding.homeImgBack.setOnClickListener {
             position--
