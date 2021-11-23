@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".NavHostActivity">
+    tools:context=".NavHostActivity"
+    android:animateLayoutChanges="true"><!--añadir animaciones a los cambios de layout-->
     <!-- Cambiar degradados + lo de los tamaños en layout_width añadir la x el gradient del fondo es vertical -->
     <TextView
         android:id="@+id/title"
