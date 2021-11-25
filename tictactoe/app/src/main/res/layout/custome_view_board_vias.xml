@@ -4,6 +4,97 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <ImageView
+        android:id="@+id/custom_view__img_0"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toStartOf="@id/custom_view__view__start"
+        app:layout_constraintBottom_toTopOf="@id/custom_view__view__top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/custom_view__img_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintEnd_toStartOf="@id/custom_view__view__end"
+        app:layout_constraintBottom_toTopOf="@id/custom_view__view__top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/custom_view__view__start"/>
+
+    <ImageView
+        android:id="@+id/custom_view__img_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/custom_view__view__top"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="@id/custom_view__view__end"/>
+
+
+
+    <ImageView
+        android:id="@+id/custom_view__img_3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toStartOf="@id/custom_view__view__start"
+        app:layout_constraintBottom_toTopOf="@id/custom_view__view__bottom"
+        app:layout_constraintTop_toTopOf="@id/custom_view__view__top"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/custom_view__img_4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintEnd_toStartOf="@id/custom_view__view__end"
+        app:layout_constraintBottom_toTopOf="@id/custom_view__view__bottom"
+        app:layout_constraintTop_toTopOf="@id/custom_view__view__top"
+        app:layout_constraintStart_toStartOf="@id/custom_view__view__start"/>
+
+    <ImageView
+        android:id="@+id/custom_view__img_5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/custom_view__view__bottom"
+        app:layout_constraintTop_toTopOf="@id/custom_view__view__top"
+        app:layout_constraintStart_toStartOf="@id/custom_view__view__end"/>
+
+
+
+    <ImageView
+        android:id="@+id/custom_view__img_6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintEnd_toStartOf="@id/custom_view__view__start"
+        app:layout_constraintTop_toTopOf="@id/custom_view__view__bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <ImageView
+        android:id="@+id/custom_view__img_7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintEnd_toStartOf="@id/custom_view__view__end"
+        app:layout_constraintTop_toTopOf="@id/custom_view__view__bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/custom_view__view__start"/>
+
+    <ImageView
+        android:id="@+id/custom_view__img_8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/custom_view__view__bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/custom_view__view__end"/>
+
     <View
         android:id="@+id/custom_view__view__top"
         android:layout_width="0dp"
