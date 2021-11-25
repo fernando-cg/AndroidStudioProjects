@@ -103,6 +103,6 @@
         <!-- TODO: 4.2 Argumento -->
         <argument
             android:name="level"
-            app:argType="string" />
+            app:argType="integer" />
     </fragment>
 </navigation>

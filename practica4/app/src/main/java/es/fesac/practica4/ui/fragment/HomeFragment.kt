@@ -33,6 +33,7 @@ class HomeFragment : Fragment() {
         viewModel.loadLevelsLiveData.removeObservers(this)
         viewModel.loadLevelsLiveData.observe(this,{ listLevel ->
             levelList = listLevel
+            position=0
             setInfo() //he puesto esto aqui par que cuando inicie el programa no se quede en blanco el hueco de los niveles
         })
     }
@@ -53,7 +54,7 @@ class HomeFragment : Fragment() {
         }
         binding.homeBtnGo.setOnClickListener {
             // TODO: 4.2 Argumento
-            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment(levelList[position].cellsNumber.toString()))
+            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment(levelList[position].cellsNumber))
         }
         binding.homeImgBack.setOnClickListener {
             position--

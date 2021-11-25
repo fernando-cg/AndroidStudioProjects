@@ -28,5 +28,6 @@
             android:name="gameType"
             app:argType="string"
             />
+        <!--aqui el tipo de variable se pone en minusculas es decir Int -> integer-->
     </fragment>
 </navigation>
