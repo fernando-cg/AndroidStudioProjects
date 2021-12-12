@@ -3,5 +3,6 @@
     <string name="app_name" translatable="false">TicTacToe</string>
     <string name="multiplayer">Multijugador</string>
     <string name="one_player">Un jugador</string>
+    <string name="game__content_description_circle_chance">Indicador turno circulo</string>
 </resources>
 <!--asi sirve para crear Diferentes layourts para diferentes idiomas tambien esto nos va a permitir cambiar un monton de cossas segun diferentes parametros-->

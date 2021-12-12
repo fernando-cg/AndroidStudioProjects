@@ -11,6 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.tictactoe.databinding.FragmentGameBinding
 import com.example.tictactoe.extension.showToast
+import com.example.tictactoe.model.BoardItem
 import com.example.tictactoe.view.BoardView
 import com.example.tictactoe.viewModel.GameViewModel
 
@@ -23,6 +24,44 @@ class GameFragment:Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        observeBoardState()
+        observeChanceState()
+        viewmodel.initState()
+        observeScoreStatus()
+    }
+
+    private fun observeScoreStatus() {
+        viewmodel.getScoreLiveData().removeObservers(this)
+        viewmodel.getScoreLiveData().observe(this,{ score ->
+            setScore(score)
+        })
+    }
+
+    private fun setScore(score: String?) {
+        binding.gameLavelPoints.text = score
+    }
+
+    private fun observeChanceState() {
+        viewmodel.getChanceStateLiveData().removeObservers(this)
+        viewmodel.getChanceStateLiveData().observe(this,{ chance ->
+            setChance(chance)
+        })
+    }
+
+    private fun setChance(chance: BoardItem) {
+        when(chance){
+             BoardItem.CROSS ->{
+                 binding.gameViewCircleChance.visibility = View.GONE
+                 binding.gameViewCrossChance.visibility = View.VISIBLE
+
+             } else ->{
+                binding.gameViewCrossChance.visibility = View.GONE
+                binding.gameViewCircleChance.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    private fun observeBoardState(){
         viewmodel.getBoardStateLiveData().removeObservers(this)
         viewmodel.getBoardStateLiveData().observe(this,{
             binding.gameViewBoard.updateState(it)
