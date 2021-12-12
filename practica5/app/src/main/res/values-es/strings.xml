@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">P5 &#8211; 2048</string>
+
+    <string name="login__init_session">Iniciar sesión</string>
+    <string name="login__enter">Entrar</string>
+    <string name="login__send_reset_password">Olvidé mi contraseña</string>
+    <string name="login__no_have_account">¿No tienes cuenta? Regístrate</string>
+
+    <string name="register__hint_user">Usuario</string>
+    <string name="register__title">Registro</string>
+    <string name="register__hint_email">Email</string>
+    <string name="register__hint_password">Contraseña</string>
+    <string name="register__hint_password_repeat">Repetir contraseña</string>
+    <string name="register__create_account">Crear cuenta</string>
+    <string name="register__have_account">¿Tienes ya una cuenta? Inicia sesión</string>
+    <string name="register__accept_term">Al registrarse, acepta la política de privacidad y términos de uso</string>
+
+    <string name="content_description__ic_close">Icono de cierre</string>
+
+    <string name="home__2">2</string>
+    <string name="home__0">0</string>
+    <string name="home__4">4</string>
+    <string name="home__8">8</string>
+    <string name="home__level_format">%1$d x %2$d</string>
+    <string name="home__record_format">High Score: %1$d</string>
+    <string name="home__go">Empezar</string>
+    <string name="home__show_statistics">Ranking</string>
+    <string name="home__achievements">Logros</string>
+    <string name="home__share_description">¡Mira este juego en Google Play!</string>
+
+    <string name="game__score">Puntuación</string>
+    <string name="game__high_score">Récord</string>
+
+    <string name="level__record_format">Record: %1$d</string>
+
+    <string name="error_loading__empty_user">El usuario no puede estar vacío</string>
+    <string name="error_loading__empty_password">La contraseña no puede estar vacía</string>
+    <string name="error_loading__fail_login">Usuario y/o contraseña no válido</string>
+</resources>

@@ -1,38 +1,31 @@
-package es.fesac.practica4.ui.fragment
+package es.fesac.practica5.ui.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import es.fesac.practica4.R
-import es.fesac.practica4.databinding.FragmentHomeBinding
-import es.fesac.practica4.ui.activity.NavHostActivity
-import es.fesac.practica4.ui.model.LevelVo
-import es.fesac.practica4.ui.viewmodel.HomeViewModel
-import es.formacion.game2048.extension.hide
-import es.formacion.game2048.extension.show
+import es.fesac.practica5.R
+import es.fesac.practica5.databinding.FragmentHomeBinding
+import es.fesac.practica5.ui.model.LevelVo
+import es.fesac.practica5.ui.viewmodel.HomeViewModel
 
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
 
     private lateinit var binding: FragmentHomeBinding
 
     private var levelList = listOf<LevelVo>()
     private var position = 0
 
-    // TODO: 4.3 ViewModel
     private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        // TODO: 4.3 ViewModel
-
-        viewModel.loadLevelsLiveData.removeObservers(this)
-        viewModel.loadLevelsLiveData.observe(this,{ listLevel ->
-            levelList = listLevel
-            position=0
-            setInfo() //he puesto esto aqui par que cuando inicie el programa no se quede en blanco el hueco de los niveles
+        viewModel.getLoadLevelsLiveData().removeObservers(this)
+        viewModel.getLoadLevelsLiveData().observe(this, {
+            levelList = it
+            position = 0
+            setInfo()
         })
     }
 
@@ -51,8 +44,9 @@ class HomeFragment : Fragment() {
             getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
         }
         binding.homeBtnGo.setOnClickListener {
-            // TODO: 4.2 Argumento
-            getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment(levelList[position].cellsNumber))
+            getNavController()?.navigate(
+                HomeFragmentDirections.actionHomeFragmentToGameFragment()
+                    .setCellsNumber(levelList[position].cellsNumber))
         }
         binding.homeImgBack.setOnClickListener {
             position--
@@ -75,23 +69,17 @@ class HomeFragment : Fragment() {
         binding.homeLabelHighScore.text = getString(R.string.level__record_format, levelList[position].record)
         when (position) {
             0 -> {
-                binding.homeImgNext.show()
-                binding.homeImgBack.hide()
+                binding.homeImgNext.visibility = View.VISIBLE
+                binding.homeImgBack.visibility = View.INVISIBLE
             }
             levelList.size - 1 -> {
-                binding.homeImgNext.hide()
-                binding.homeImgBack.show()
+                binding.homeImgNext.visibility = View.INVISIBLE
+                binding.homeImgBack.visibility = View.VISIBLE
             }
             else -> {
-                binding.homeImgNext.show()
-                binding.homeImgBack.show()
+                binding.homeImgNext.visibility = View.VISIBLE
+                binding.homeImgBack.visibility = View.VISIBLE
             }
         }
-    }
-
-    private fun getNavController() = if (activity is NavHostActivity) {
-        (activity as NavHostActivity).getNavController()
-    } else {
-        null
     }
 }
