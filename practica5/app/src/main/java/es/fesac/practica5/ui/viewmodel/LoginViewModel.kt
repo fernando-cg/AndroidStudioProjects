@@ -1,8 +1,14 @@
 package es.fesac.practica5.ui.viewmodel
 
+
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * TODO 5.1:
@@ -39,15 +45,50 @@ class LoginViewModel : ViewModel() {
 
     //error message
 
-    private val errorMessageMutableLiveData:MutableLiveData<Boolean> by lazy {
-        MutableLiveData<Boolean>()
+    private val errorMessageMutableLiveData:MutableLiveData<Int> by lazy {
+        MutableLiveData<Int>()
     }
 
-    fun getErrorMessageLiveData():LiveData<Boolean> = errorMessageMutableLiveData
+    fun getErrorMessageLiveData():LiveData<Int> = errorMessageMutableLiveData
 
     //Checking Function
     fun login(userFromInput: String, passwordFromInput: String) {
+        //Dispatchers.IO Corrutine in backgorund thread
+        //Dispatchers.Main corrutine in main thread
+        viewModelScope.launch(Dispatchers.IO){
+            withContext(Dispatchers.Main){
+                statusLoadingViewMutableLiveData.value = true
+            }
 
+            //Cambiar a enum class TODO
+            if(userFromInput.isEmpty()){
+                if(passwordFromInput.isEmpty()){
+                    withContext(Dispatchers.Main) {
+                        errorMessageMutableLiveData.value = 1
+                    }
+                }else{
+                    withContext(Dispatchers.Main) {
+                        errorMessageMutableLiveData.value = 2
+                    }
+                }
+            }else{
+                if(passwordFromInput.isEmpty()){
+                    withContext(Dispatchers.Main) {
+                        errorMessageMutableLiveData.value =  3
+                    }
+                }else{
+                    withContext(Dispatchers.Main) {
+                        errorMessageMutableLiveData.value = 0
+                    }
+                }
+            }
+
+
+            delay(2000)
+            withContext(Dispatchers.Main){
+                statusLoadingViewMutableLiveData.value = false
+            }
+        }
     }
 
     //end this

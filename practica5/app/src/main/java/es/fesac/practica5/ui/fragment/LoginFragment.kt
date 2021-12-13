@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
+import es.fesac.practica5.R
 import es.fesac.practica5.databinding.FragmentLoginBinding
+import es.fesac.practica5.ui.activity.NavHostActivity
+import es.fesac.practica5.ui.extension.showToast
 import es.fesac.practica5.ui.viewmodel.LoginViewModel
 
 /**
@@ -26,6 +30,12 @@ class LoginFragment : BaseFragment() {
 
     private val viewModel : LoginViewModel by viewModels()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        observeLoadingView()
+        observeErrorToast()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -33,6 +43,24 @@ class LoginFragment : BaseFragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         setUpViews()
         return binding?.root
+    }
+
+    private fun observeLoadingView(){
+        viewModel.getStatusLoadingViewLiveData().removeObservers(this)
+        viewModel.getStatusLoadingViewLiveData().observe(this,{ status ->
+            (activity as NavHostActivity).showLoading(status)
+        })
+    }
+
+    private fun observeErrorToast(){
+        viewModel.getErrorMessageLiveData().removeObservers(this)
+        viewModel.getErrorMessageLiveData().observe(this,{ error ->
+            when(error){
+                1->showToast(getString(R.string.error_loading__empty_user) + "\n" + getString(R.string.error_loading__empty_password))
+                2->showToast(getString(R.string.error_loading__empty_user))
+                3->showToast(getString(R.string.error_loading__empty_password))
+            }
+        })
     }
 
     private fun setUpViews() {
