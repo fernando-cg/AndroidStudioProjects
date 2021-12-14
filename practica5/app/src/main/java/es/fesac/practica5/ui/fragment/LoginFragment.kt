@@ -48,7 +48,7 @@ class LoginFragment : BaseFragment() {
     private fun observeLoadingView(){
         viewModel.getStatusLoadingViewLiveData().removeObservers(this)
         viewModel.getStatusLoadingViewLiveData().observe(this,{ status ->
-            (activity as NavHostActivity).showLoading(status)
+            showLoading(status)
         })
     }
 

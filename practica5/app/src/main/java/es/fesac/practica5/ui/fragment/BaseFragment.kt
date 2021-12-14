@@ -9,4 +9,10 @@ open class BaseFragment : Fragment() {
     } else {
         null
     }
+
+    fun showLoading(status: Boolean)= if (activity is NavHostActivity) {
+        (activity as NavHostActivity).showLoading(status)
+    } else {
+        null
+    }
 }
