@@ -90,11 +90,11 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun getUserFromInput(): String {
-        return binding?.loginInputUser?.text.toString()
+        return binding?.loginInputUser?.text.toString().trim()
     }
 
     private fun getPasswordFromInput(): String {
-        return binding?.loginInputPassword?.text.toString()
+        return binding?.loginInputPassword?.text.toString().trim()
     }
 
     private fun goToHome() {

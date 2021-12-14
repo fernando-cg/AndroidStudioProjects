@@ -24,11 +24,13 @@ class NavHostActivity : AppCompatActivity() {
     }
 
     fun showLoading(loading: Boolean) {
-        // TODO 5.3
+        // TODO 5.3 cambiar la forma de enviar los mensajes de errores y los saltos de contexto
         if(loading){
+            binding?.navHostViewLoading?.showSquare()
             binding?.navHostViewLoading?.visibility = View.VISIBLE
         }
         else{
+            binding?.navHostViewLoading?.hideSquare()
             binding?.navHostViewLoading?.visibility = View.GONE
         }
     }

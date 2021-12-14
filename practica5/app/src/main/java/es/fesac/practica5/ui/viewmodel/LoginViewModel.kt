@@ -61,8 +61,8 @@ class LoginViewModel : ViewModel() {
             }
 
             //Cambiar a enum class TODO
-            if(userFromInput.isEmpty()){
-                if(passwordFromInput.isEmpty()){
+            if(userFromInput.isBlank()){
+                if(passwordFromInput.isBlank()){
                     withContext(Dispatchers.Main) {
                         errorMessageMutableLiveData.value = 1
                     }
@@ -72,12 +72,14 @@ class LoginViewModel : ViewModel() {
                     }
                 }
             }else{
-                if(passwordFromInput.isEmpty()){
+                if(passwordFromInput.isBlank()){
                     withContext(Dispatchers.Main) {
                         errorMessageMutableLiveData.value =  3
                     }
                 }else{
                     withContext(Dispatchers.Main) {
+                        delay(2000)
+                        statusLoadingViewMutableLiveData.value = false
                         errorMessageMutableLiveData.value = 0
                         checkLoginMutableLiveData.value = userFromInput == "admin" && passwordFromInput == "123456"
                     }

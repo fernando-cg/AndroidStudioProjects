@@ -23,5 +23,17 @@ class LoadingView(context: Context, attrs: AttributeSet?): ConstraintLayout(cont
         binding = null
         super.onDetachedFromWindow()
     }
+    fun showSquare(){
+        binding?.card2?.visibility = VISIBLE
+        binding?.card0?.visibility = VISIBLE
+        binding?.card4?.visibility = VISIBLE
+        binding?.card8?.visibility = VISIBLE
+    }
 
+    fun hideSquare(){
+        binding?.card2?.visibility = GONE
+        binding?.card0?.visibility = GONE
+        binding?.card4?.visibility = GONE
+        binding?.card8?.visibility = GONE
+    }
 }
