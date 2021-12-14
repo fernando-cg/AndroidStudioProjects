@@ -79,10 +79,10 @@ class LoginViewModel : ViewModel() {
                 }else{
                     withContext(Dispatchers.Main) {
                         errorMessageMutableLiveData.value = 0
+                        checkLoginMutableLiveData.value = userFromInput == "admin" && passwordFromInput == "123456"
                     }
                 }
             }
-
 
             delay(2000)
             withContext(Dispatchers.Main){

@@ -34,6 +34,7 @@ class LoginFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
         observeLoadingView()
         observeErrorToast()
+        observeLogin()
     }
 
     override fun onCreateView(
@@ -59,6 +60,17 @@ class LoginFragment : BaseFragment() {
                 1->showToast(getString(R.string.error_loading__empty_user) + "\n" + getString(R.string.error_loading__empty_password))
                 2->showToast(getString(R.string.error_loading__empty_user))
                 3->showToast(getString(R.string.error_loading__empty_password))
+            }
+        })
+    }
+
+    private fun observeLogin(){
+        viewModel.getCheckLoginLiveData().removeObservers(this)
+        viewModel.getCheckLoginLiveData().observe(this,{ status->
+            if(status){
+                goToHome()
+            }else{
+                showToast(getString(R.string.error_loading__fail_login))
             }
         })
     }
