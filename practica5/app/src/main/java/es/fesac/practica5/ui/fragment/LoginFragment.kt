@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModel
 import es.fesac.practica5.R
 import es.fesac.practica5.databinding.FragmentLoginBinding
-import es.fesac.practica5.ui.activity.NavHostActivity
 import es.fesac.practica5.ui.extension.showToast
 import es.fesac.practica5.ui.viewmodel.LoginViewModel
 
