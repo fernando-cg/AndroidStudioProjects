@@ -53,10 +53,8 @@ class LoginFragment : BaseFragment() {
     private fun observeErrorToast(){
         viewModel.getErrorMessageLiveData().removeObservers(this)
         viewModel.getErrorMessageLiveData().observe(this,{ error ->
-            when(error){
-                1->showToast(getString(R.string.error_loading__empty_user) + "\n" + getString(R.string.error_loading__empty_password))
-                2->showToast(getString(R.string.error_loading__empty_user))
-                3->showToast(getString(R.string.error_loading__empty_password))
+            if(error != 0){
+                showToast(getString(error))
             }
         })
     }

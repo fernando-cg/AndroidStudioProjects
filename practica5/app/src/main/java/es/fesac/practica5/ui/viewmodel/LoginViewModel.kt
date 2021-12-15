@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import es.fesac.practica5.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -59,36 +60,27 @@ class LoginViewModel : ViewModel() {
             withContext(Dispatchers.Main){
                 statusLoadingViewMutableLiveData.value = true
             }
+            var error = 0
 
-            //Cambiar a enum class TODO
             if(userFromInput.isBlank()){
-                if(passwordFromInput.isBlank()){
-                    withContext(Dispatchers.Main) {
-                        errorMessageMutableLiveData.value = 1
-                    }
-                }else{
-                    withContext(Dispatchers.Main) {
-                        errorMessageMutableLiveData.value = 2
-                    }
-                }
+                error = R.string.error_loading__empty_user
             }else{
                 if(passwordFromInput.isBlank()){
-                    withContext(Dispatchers.Main) {
-                        errorMessageMutableLiveData.value =  3
-                    }
-                }else{
-                    withContext(Dispatchers.Main) {
-                        delay(2000)
-                        statusLoadingViewMutableLiveData.value = false
-                        errorMessageMutableLiveData.value = 0
-                        checkLoginMutableLiveData.value = userFromInput == "admin" && passwordFromInput == "123456"
-                    }
+                    error = R.string.error_loading__empty_password
                 }
             }
-
             delay(2000)
-            withContext(Dispatchers.Main){
-                statusLoadingViewMutableLiveData.value = false
+            if(error ==0){
+                withContext(Dispatchers.Main) {
+                    statusLoadingViewMutableLiveData.value = false
+                    errorMessageMutableLiveData.value = error
+                    checkLoginMutableLiveData.value = userFromInput == "admin" && passwordFromInput == "123456"
+                }
+            }else{
+                withContext(Dispatchers.Main){
+                    statusLoadingViewMutableLiveData.value = false
+                    errorMessageMutableLiveData.value = error
+                }
             }
         }
     }

@@ -3,7 +3,11 @@ package com.example.tictactoe.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.tictactoe.model.BoardItem
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class GameViewModel:ViewModel() {
     private val boardStateMutableLiveData by lazy { //cuando se invoca a la variable es cuando se ejecuta lo que vale una variable
@@ -19,6 +23,10 @@ class GameViewModel:ViewModel() {
         BoardItem.NONE,BoardItem.NONE,BoardItem.NONE,
         BoardItem.NONE,BoardItem.NONE,BoardItem.NONE
     )
+
+    private val winnerStateMutableLiveData by lazy {
+        MutableLiveData<BoardItem>()
+    }
 
     private val winCombinations = listOf(
         listOf(0,1,2),
@@ -40,12 +48,14 @@ class GameViewModel:ViewModel() {
     fun getBoardStateLiveData():LiveData<List<BoardItem>> = boardStateMutableLiveData //asi esta bien mutable live data extiende de live data
     fun getChanceStateLiveData():LiveData<BoardItem> = turnStateMutableLiveData
     fun getScoreLiveData():LiveData<String> = scoreMutableLiveData
+    fun getWinnerLiveData():LiveData<BoardItem> = winnerStateMutableLiveData
 
     fun initState(){
         turnStateMutableLiveData.value = chance
         boardStateMutableLiveData.value = boardStateList
         scoreMutableLiveData.value = "$XPoints : $OPoints"
     }//Metodo para indicar el estado inicial
+
     private fun nextChance(){
         chance = when(chance){
             BoardItem.CROSS-> BoardItem.CIRCLE
@@ -55,22 +65,49 @@ class GameViewModel:ViewModel() {
 
         turnStateMutableLiveData.value = chance
     }
+
     fun clickOnItem(position: Int) {
-        if(boardStateList[position]==BoardItem.NONE) {
-            boardStateList[position] = chance
-            val winner = checkWin()
-            if(winner != BoardItem.NONE){
-                val xPositionList = boardStateList.filter {}.mapIndexed{} //filtra por x y despues cambia las x por posiciones
-            }else {
-                nextChance()
-                boardStateMutableLiveData.value = boardStateList
+        viewModelScope.launch(Dispatchers.IO) {
+            chance = when(chance){
+                BoardItem.CROSS-> BoardItem.CIRCLE
+                BoardItem.CIRCLE-> BoardItem.CROSS
+                else -> BoardItem.CIRCLE
+            }
+            withContext(Dispatchers.Main){
+                turnStateMutableLiveData.value = chance
+            }
+
+            if(boardStateList[position]==BoardItem.NONE) {
+                boardStateList[position] = chance
+                val winner = checkWin()
+                if(winner != BoardItem.NONE){
+                    withContext(Dispatchers.Main){
+                        winnerStateMutableLiveData.value = winner
+                    }
+                }else {
+                    withContext(Dispatchers.Main) {
+                        nextChance()
+                        boardStateMutableLiveData.value = boardStateList
+                    }
+                }
             }
         }
+
     }
 
-    private fun checkWin(): BoardItem {
+    private suspend fun checkWin(): BoardItem {
         var result = BoardItem.NONE
-            boardStateList
+        winCombinations.forEach{ winCombination->
+            val state = boardStateList[winCombination.first()]
+            if(state != BoardItem.NONE){
+                if(winCombination.all{ item->
+                        state == boardStateList[item]
+                    }){
+                        result = state
+                    return@forEach
+                }
+            }
+        }
         return result
     }
 }

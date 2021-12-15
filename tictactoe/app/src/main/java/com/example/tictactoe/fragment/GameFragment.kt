@@ -28,6 +28,14 @@ class GameFragment:Fragment() {
         observeChanceState()
         viewmodel.initState()
         observeScoreStatus()
+        observeWinnerState()
+    }
+
+    private fun observeWinnerState() {
+        viewmodel.getWinnerLiveData().removeObservers(this)
+        viewmodel.getWinnerLiveData().observe(this,{
+            showToast(it.name)
+        })
     }
 
     private fun observeScoreStatus() {
