@@ -1,11 +1,13 @@
 package es.fesac.practica5.ui.extension
 
-import androidx.constraintlayout.widget.ConstraintLayout
-import es.fesac.practica5.databinding.CustomViewLoadingBinding
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 
-fun ConstraintLayout.visibility(binding : CustomViewLoadingBinding?,visibility:Int){
-    binding?.card2?.visibility = visibility
-    binding?.card0?.visibility = visibility
-    binding?.card4?.visibility = visibility
-    binding?.card8?.visibility = visibility
+fun View.visible(){
+    this.visibility = VISIBLE
+}
+
+fun View.invisible(){
+    this.visibility = GONE
 }

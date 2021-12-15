@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import es.fesac.practica5.databinding.CustomViewLoadingBinding
-import es.fesac.practica5.ui.extension.visibility
 
 /**
  * TODO 5.3:
@@ -24,10 +23,10 @@ class LoadingView(context: Context, attrs: AttributeSet?): ConstraintLayout(cont
         binding = null
         super.onDetachedFromWindow()
     }
-    fun showSquare(){
-        visibility(binding,VISIBLE)
-    }
-    fun hideSquare(){
-        visibility(binding, GONE)
+    fun statusSquare(visibility:Int){
+        binding?.card2?.visibility = visibility
+        binding?.card0?.visibility = visibility
+        binding?.card4?.visibility = visibility
+        binding?.card8?.visibility = visibility
     }
 }

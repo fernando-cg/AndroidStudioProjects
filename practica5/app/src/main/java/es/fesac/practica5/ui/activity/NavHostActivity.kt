@@ -2,11 +2,14 @@ package es.fesac.practica5.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import es.fesac.practica5.R
 import es.fesac.practica5.databinding.NavHostActivityBinding
+import es.fesac.practica5.ui.extension.invisible
+import es.fesac.practica5.ui.extension.visible
 
 class NavHostActivity : AppCompatActivity() {
 
@@ -26,12 +29,12 @@ class NavHostActivity : AppCompatActivity() {
     fun showLoading(loading: Boolean) {
         // TODO 5.3
         if(loading){
-            binding?.navHostViewLoading?.showSquare()
-            binding?.navHostViewLoading?.visibility = View.VISIBLE
+            binding?.navHostViewLoading?.statusSquare(VISIBLE)
+            binding?.navHostViewLoading?.visible()
         }
         else{
-            binding?.navHostViewLoading?.hideSquare()
-            binding?.navHostViewLoading?.visibility = View.GONE
+            binding?.navHostViewLoading?.statusSquare(GONE)
+            binding?.navHostViewLoading?.invisible()
         }
     }
 
