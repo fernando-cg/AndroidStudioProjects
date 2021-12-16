@@ -26,15 +26,25 @@ class GameFragment:Fragment() {
         super.onCreate(savedInstanceState)
         observeBoardState()
         observeChanceState()
-        viewmodel.initState()
         observeScoreStatus()
         observeWinnerState()
+        observeWinCombinationState()
+        viewmodel.initState()
+    }
+
+    private fun observeWinCombinationState() {
+        viewmodel.getWinCombinationLiveData().removeObservers(this)
+        viewmodel.getWinCombinationLiveData().observe(this,{ winCombination ->
+            binding.gameViewBoard.updateWinCombination(winCombination)
+            binding.gameViewBoard.isEnabled = false
+        })
     }
 
     private fun observeWinnerState() {
         viewmodel.getWinnerLiveData().removeObservers(this)
         viewmodel.getWinnerLiveData().observe(this,{
-            showToast(it.name)
+            binding.gameViewBoard.clear()
+            binding.gameViewBoard.isEnabled = true
         })
     }
 

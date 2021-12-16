@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.tictactoe.model.BoardItem
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -18,7 +19,7 @@ class GameViewModel:ViewModel() {
         MutableLiveData<BoardItem>()
     }
 
-    private val boardStateList = mutableListOf(
+    private var boardStateList = mutableListOf(
         BoardItem.NONE,BoardItem.NONE,BoardItem.NONE,
         BoardItem.NONE,BoardItem.NONE,BoardItem.NONE,
         BoardItem.NONE,BoardItem.NONE,BoardItem.NONE
@@ -28,6 +29,9 @@ class GameViewModel:ViewModel() {
         MutableLiveData<BoardItem>()
     }
 
+    private val winCombinationMutableLiveData by lazy{
+        MutableLiveData<List<Int>>()
+    }
     private val winCombinations = listOf(
         listOf(0,1,2),
         listOf(3,4,5),
@@ -49,6 +53,7 @@ class GameViewModel:ViewModel() {
     fun getChanceStateLiveData():LiveData<BoardItem> = turnStateMutableLiveData
     fun getScoreLiveData():LiveData<String> = scoreMutableLiveData
     fun getWinnerLiveData():LiveData<BoardItem> = winnerStateMutableLiveData
+    fun getWinCombinationLiveData():LiveData<List<Int>> = winCombinationMutableLiveData
 
     fun initState() {
         boardStateMutableLiveData.value = boardStateList
@@ -66,31 +71,58 @@ class GameViewModel:ViewModel() {
 
     fun clickOnItem(position: Int) {
         viewModelScope.launch(Dispatchers.IO) {
+
             if (boardStateList[position] == BoardItem.NONE) {
                 boardStateList[position] = chance
                 withContext(Dispatchers.Main) {
                     boardStateMutableLiveData.value = boardStateList
                 }
-                val winner = checkWin()
+                val winnerPair = checkWin()
 
-                if (winner != BoardItem.NONE) {
+                if (winnerPair.first != BoardItem.NONE) {
                     withContext(Dispatchers.Main) {
-                        winnerStateMutableLiveData.value = winner
+                        winCombinationMutableLiveData.value = winnerPair.second
+                    }
+                    delay(2000)
+                    resetGame()
+                    increasePoints(winnerPair.first)
+                    nextChance()
+                    withContext(Dispatchers.Main) {
+                        winnerStateMutableLiveData.value = winnerPair.first
+                        boardStateMutableLiveData.value = boardStateList
+                        turnStateMutableLiveData.value = chance
+                        scoreMutableLiveData.value = "$XPoints : $OPoints"
                     }
 
                 } else {
                     nextChance()
                     withContext(Dispatchers.Main) {
-                        winnerStateMutableLiveData.value = chance
+                        turnStateMutableLiveData.value = chance
                     }
                 }
             }
         }
     }
 
-    private suspend fun checkWin(): BoardItem {
-        var result = BoardItem.NONE
+    private fun increasePoints(winner: BoardItem) {
+        if(winner==BoardItem.CROSS){
+            XPoints++
+        }else{
+            OPoints++
+        }
+    }
 
+    private fun resetGame() {
+        boardStateList = mutableListOf(
+                BoardItem.NONE,BoardItem.NONE,BoardItem.NONE,
+                BoardItem.NONE,BoardItem.NONE,BoardItem.NONE,
+                BoardItem.NONE,BoardItem.NONE,BoardItem.NONE
+        )
+    }
+
+    private suspend fun checkWin(): Pair<BoardItem,List<Int>> {
+        var winner = BoardItem.NONE
+        var winCombinationList = listOf<Int>()
         winCombinations.forEach { winCombination ->
             val state = boardStateList[winCombination.first()]
             if (state != BoardItem.NONE) {
@@ -98,12 +130,13 @@ class GameViewModel:ViewModel() {
                     state == boardStateList[item]
                 }
                 if (win) {
-                    result = state
+                    winner = state
+                    winCombinationList = winCombination
                     return@forEach
                 }
             }
         }
 
-        return result
+        return Pair(winner,winCombinationList)
     }
 }

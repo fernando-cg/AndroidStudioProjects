@@ -5,7 +5,9 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
+import com.example.tictactoe.R
 import com.example.tictactoe.databinding.CustomeViewBoardViasBinding
 import com.example.tictactoe.model.BoardItem
 import java.lang.IllegalArgumentException
@@ -45,7 +47,10 @@ class BoardView(context: Context,attrs:AttributeSet?) : ConstraintLayout(context
     private fun setUpClickItems(){
         for(i in 0 until MAX_ITEMS){
             getImgeFromPosition(i)?.setOnClickListener {
-                listener?.clickOnItem(it as ImageView, i)
+                //listener?.clickOnItem(it as ImageView, i)
+                if(this.isEnabled){
+                    listener?.clickOnItem(it as ImageView, i)
+                }
             }
         }
     }
@@ -67,6 +72,14 @@ class BoardView(context: Context,attrs:AttributeSet?) : ConstraintLayout(context
     fun clear(){
         for(i in 0 until MAX_ITEMS){
             getImgeFromPosition(i)?.setImageDrawable(null)
+            getImgeFromPosition(i)?.setColorFilter(ResourcesCompat.getColor(resources,R.color.black,null))
+
+        }
+    }
+
+    fun updateWinCombination(winCombination: List<Int>) {
+        winCombination.forEach { position ->
+            getImgeFromPosition(position)?.setColorFilter(ResourcesCompat.getColor(resources,R.color.green,null))
         }
     }
 
