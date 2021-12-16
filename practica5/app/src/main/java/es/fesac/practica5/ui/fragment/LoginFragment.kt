@@ -47,6 +47,14 @@ class LoginFragment : BaseFragment() {
         viewModel.getStatusLoadingViewLiveData().removeObservers(this)
         viewModel.getStatusLoadingViewLiveData().observe(this,{ status ->
             showLoading(status)
+            if(status){
+                binding?.loginInputUser?.isEnabled = false
+                binding?.loginInputPassword?.isEnabled = false
+            }else{
+                binding?.loginInputUser?.isEnabled = true
+                binding?.loginInputPassword?.isEnabled = true
+            }
+
         })
     }
 
