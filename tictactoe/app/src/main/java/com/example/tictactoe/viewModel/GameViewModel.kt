@@ -50,64 +50,60 @@ class GameViewModel:ViewModel() {
     fun getScoreLiveData():LiveData<String> = scoreMutableLiveData
     fun getWinnerLiveData():LiveData<BoardItem> = winnerStateMutableLiveData
 
-    fun initState(){
-        turnStateMutableLiveData.value = chance
+    fun initState() {
         boardStateMutableLiveData.value = boardStateList
-        scoreMutableLiveData.value = "$XPoints : $OPoints"
-    }//Metodo para indicar el estado inicial
-
-    private fun nextChance(){
-        chance = when(chance){
-            BoardItem.CROSS-> BoardItem.CIRCLE
-            BoardItem.CIRCLE-> BoardItem.CROSS
-            else -> BoardItem.CIRCLE
-        }
-
         turnStateMutableLiveData.value = chance
+        scoreMutableLiveData.value = "$XPoints : $OPoints"
+    }
+
+    private fun nextChance() {
+        chance = when (chance) {
+            BoardItem.CROSS -> BoardItem.CIRCLE
+            BoardItem.CIRCLE -> BoardItem.CROSS
+            else -> BoardItem.CROSS
+        }
     }
 
     fun clickOnItem(position: Int) {
         viewModelScope.launch(Dispatchers.IO) {
-            chance = when(chance){
-                BoardItem.CROSS-> BoardItem.CIRCLE
-                BoardItem.CIRCLE-> BoardItem.CROSS
-                else -> BoardItem.CIRCLE
-            }
-            withContext(Dispatchers.Main){
-                turnStateMutableLiveData.value = chance
-            }
-
-            if(boardStateList[position]==BoardItem.NONE) {
+            if (boardStateList[position] == BoardItem.NONE) {
                 boardStateList[position] = chance
+                withContext(Dispatchers.Main) {
+                    boardStateMutableLiveData.value = boardStateList
+                }
                 val winner = checkWin()
-                if(winner != BoardItem.NONE){
-                    withContext(Dispatchers.Main){
+
+                if (winner != BoardItem.NONE) {
+                    withContext(Dispatchers.Main) {
                         winnerStateMutableLiveData.value = winner
                     }
-                }else {
+
+                } else {
+                    nextChance()
                     withContext(Dispatchers.Main) {
-                        nextChance()
-                        boardStateMutableLiveData.value = boardStateList
+                        winnerStateMutableLiveData.value = chance
                     }
                 }
             }
         }
-
     }
 
     private suspend fun checkWin(): BoardItem {
         var result = BoardItem.NONE
-        winCombinations.forEach{ winCombination->
+
+        winCombinations.forEach { winCombination ->
             val state = boardStateList[winCombination.first()]
-            if(state != BoardItem.NONE){
-                if(winCombination.all{ item->
-                        state == boardStateList[item]
-                    }){
-                        result = state
+            if (state != BoardItem.NONE) {
+                val win = winCombination.all { item ->
+                    state == boardStateList[item]
+                }
+                if (win) {
+                    result = state
                     return@forEach
                 }
             }
         }
+
         return result
     }
 }
