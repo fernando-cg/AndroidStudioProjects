@@ -95,7 +95,6 @@ class HomeFragment : BaseFragment() {
             }
             setInfo()
         }
-        //añadido a partir de aqui
         binding.homeImgLogout.setOnClickListener{
             if(viewModel.isLoggedUser()){
                 viewModel.logout()
