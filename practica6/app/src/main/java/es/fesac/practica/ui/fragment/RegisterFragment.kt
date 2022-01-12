@@ -1,9 +1,11 @@
 package es.fesac.practica.ui.fragment
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import es.fesac.practica.databinding.FragmentRegisterBinding
 import es.fesac.practica.ui.extension.showToast
@@ -89,6 +91,31 @@ class RegisterFragment : BaseFragment() {
         binding?.registerImgClose?.setOnClickListener {
             getNavController()?.navigateUp()
         }
+        binding?.registerInputPasswordRepeat?.addTextChangedListener{
+            val password = getPassword()
+            val passwordR = getPasswordRepeat()
+            
+            when {
+                password.length == passwordR.length -> {
+                    if(password == passwordR){
+                        binding?.registerInputPasswordRepeat?.setTextColor(Color.BLACK)
+                    }else{
+                        binding?.registerInputPasswordRepeat?.setTextColor(Color.RED)
+                    }
+                }
+                password.length > passwordR.length-> {
+                    if(password.substring(0,passwordR.length) == passwordR){
+                        binding?.registerInputPasswordRepeat?.setTextColor(Color.BLACK)
+                    }else{
+                        binding?.registerInputPasswordRepeat?.setTextColor(Color.RED)
+                    }
+                }
+                else -> {
+                    binding?.registerInputPasswordRepeat?.setTextColor(Color.RED)
+                }
+            }
+        }
+
     }
 
     private fun goToHome() {

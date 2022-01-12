@@ -65,7 +65,7 @@ class RegisterViewModel : ViewModel() {
         }
     }
 
-    fun validateFields(email: String, password: String, passwordRepeat: String, user: String, check: Boolean): String?{
+    private fun validateFields(email: String, password: String, passwordRepeat: String, user: String, check: Boolean): String?{
         return when{
             email.isBlank() ->{
                 MyApplication.instance.getString(R.string.register_error__empty_email)
@@ -82,7 +82,6 @@ class RegisterViewModel : ViewModel() {
             !check ->{
                 MyApplication.instance.getString(R.string.register_error__accept_term_and_conditions)
             }
-
             else ->{
                 null
             }
