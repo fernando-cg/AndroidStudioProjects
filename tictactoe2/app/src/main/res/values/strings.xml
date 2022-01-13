@@ -34,5 +34,4 @@
     <string name="register__error_email_in_use">The email address is already in use by another account.</string>
 
     <string name="content_description__ic_close">Icon close</string>
-    <string name="login">Login</string>
 </resources>

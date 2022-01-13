@@ -8,33 +8,41 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.lang.Exception
+import java.util.*
 
-class LoginViewModel:ViewModel() {
-    private val loadingMutableLiveData: MutableLiveData<Boolean> by lazy{
+class LoginViewModel : ViewModel() {
+    private val loadingMutableLiveData by lazy {
         MutableLiveData<Boolean>()
     }
-
-    private val errorMutableLiveData: MutableLiveData<String?> by lazy{
+    private val errorMutableLiveData by lazy {
         MutableLiveData<String?>()
     }
-
-    private val successLoginMutableLiveData: MutableLiveData<Boolean> by lazy{
+    private val successLoginMutableLiveData by lazy {
         MutableLiveData<Boolean>()
     }
 
-    fun loadingLiveData() : LiveData<Boolean> = loadingMutableLiveData
-    fun errorLiveData() : LiveData<String?> = errorMutableLiveData
-    fun successLoginLiveData() : LiveData<Boolean> = successLoginMutableLiveData
+    fun loadingLiveData(): LiveData<Boolean> = loadingMutableLiveData
+    fun errorLiveData(): LiveData<String?> = errorMutableLiveData
+    fun successLoginLiveData(): LiveData<Boolean> = successLoginMutableLiveData
 
-    fun login(email:String,password:String){
+    fun login(email: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 loadingMutableLiveData.value = true
             }
-            Firebase.auth.
-            withContext(Dispatchers.Main){
+           val error= try {
+                Firebase.auth.signInWithEmailAndPassword(email, password).await()
+            }catch (exception: Exception){
+                exception.localizedMessage
+            }
+            val loginSuccess = error == null
+            withContext(Dispatchers.Main) {
                 loadingMutableLiveData.value = false
+                successLoginMutableLiveData.value = loginSuccess
+                errorMutableLiveData.value = error.toString()
             }
         }
     }

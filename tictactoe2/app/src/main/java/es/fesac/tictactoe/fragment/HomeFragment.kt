@@ -27,7 +27,6 @@ class HomeFragment : BaseFragment() {
             }
             binding.mainBtnMultiplayer.visibility = multiplayerVisibility
         })
-
         viewModel.loadingLiveData.removeObservers(this)
         viewModel.loadingLiveData.observe(this, { loading ->
             showLoading(loading)
@@ -49,18 +48,23 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setUpViews() {
-
         binding.mainBtnMultiplayer.setOnClickListener {
             goToGame("multi")
         }
         binding.mainBtnSinglePlayer.setOnClickListener {
             goToGame("single")
         }
+        binding.mainBtnLogin.setOnClickListener {
+            goToLogin()
+        }
     }
-    private fun goToGame(gameType: String){
+
+    private fun goToLogin() {
+        getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToLoginFragment())
+    }
+
+    private fun goToGame(gameType: String) {
         getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment(gameType = gameType))
     }
-    private fun getNavController(): NavController? {
-        return (activity as? NavHostActivity)?.getNavController()
-    }
+
 }

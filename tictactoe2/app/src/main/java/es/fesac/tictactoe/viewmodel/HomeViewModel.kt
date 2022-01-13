@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeViewModel : ViewModel() {
 
@@ -18,21 +19,17 @@ class HomeViewModel : ViewModel() {
 
     fun getMultiplayerState() {
         viewModelScope.launch(Dispatchers.IO) {
-            multiplayerMutableLiveData.postValue(false)
+            withContext(Dispatchers.Main) {
+                multiplayerMutableLiveData.value = false
+                loadingMutableLiveData.value = true
+            }
 
             delay(4000)
 
-            multiplayerMutableLiveData.postValue(true)
-        }
-    }
-
-    fun load() {
-        viewModelScope.launch(Dispatchers.IO) {
-            loadingMutableLiveData.postValue(true)
-
-            delay(4000)
-
-            loadingMutableLiveData.postValue(false)
+            withContext(Dispatchers.Main) {
+                multiplayerMutableLiveData.value = true
+                loadingMutableLiveData.value = false
+            }
         }
     }
 }

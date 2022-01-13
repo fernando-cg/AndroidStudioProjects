@@ -30,7 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/main_label_title" />
 
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/main_btn_multiplayer"
         android:layout_width="0dp"
@@ -71,6 +70,4 @@
         app:layout_constraintBottom_toTopOf="@id/main_btn_single_player"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

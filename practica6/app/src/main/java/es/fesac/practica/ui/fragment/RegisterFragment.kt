@@ -40,9 +40,11 @@ class RegisterFragment : BaseFragment() {
         // TODO 6.2
         viewModel.getErrorLiveData().removeObservers(this)
         viewModel.getErrorLiveData().observe(this,{ message ->
-            if (message != null) {
-                showToast(message)
+
+            message?.let {
+                showToast(it)
             }
+
         })
     }
 
