@@ -68,6 +68,8 @@ class RegisterFragment : BaseFragment() {
 
         binding?.registerBtnCreateAccount?.setOnClickListener {
             viewModel.register(
+                //Preguntar esto
+                context=requireContext(),
                 email = getEmail(),
                 password = getPassword(),
                 passwordRepeat = getPasswordRepeat(),

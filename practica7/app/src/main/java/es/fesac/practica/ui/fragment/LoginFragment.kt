@@ -63,7 +63,8 @@ class LoginFragment : BaseFragment() {
         }
 
         binding?.loginBtnEnter?.setOnClickListener {
-            viewModel.login(getUserFromInput(), getPasswordFromInput())
+            //Preguntar esto
+            viewModel.login(requireContext(),getUserFromInput(), getPasswordFromInput())
         }
 
         binding?.loginImgClose?.setOnClickListener {

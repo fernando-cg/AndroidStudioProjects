@@ -1,5 +1,6 @@
 package es.fesac.practica.ui.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -28,7 +29,7 @@ class LoginViewModel : ViewModel() {
     fun getLoginLiveData(): LiveData<Boolean> = loginMutableLiveData
     fun getErrorLiveData(): LiveData<String?> = errorMutableLiveData
 
-    fun login(user: String, password: String) {
+    fun login(context: Context, user: String, password: String) {
         viewModelScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 loadingMutableLiveData.value = true
@@ -36,7 +37,7 @@ class LoginViewModel : ViewModel() {
 
             var error = validateFields(user, password)
             if (error == null) {
-                error = RepositoryManager.login(user, password)
+                error = RepositoryManager.login(context,user, password)
             }
 
             withContext(Dispatchers.Main) {

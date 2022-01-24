@@ -36,12 +36,18 @@ class HomeViewModel : ViewModel() {
 
     fun loadLevels() {
         viewModelScope.launch(Dispatchers.IO) {
-            val levelList = mutableListOf<LevelVo>()
-            for (i in MIN_SQUARES..MAX_SQUARES) {
-                levelList.add(LevelVo(i.toLong(), "$i x $i", i, 0))
+            withContext(Dispatchers.Main) {
+                loadingMutableLiveData.value = true
             }
+            //Preguntar esto
+            val mutablelevelList = mutableListOf<LevelVo>()
+            for (i in MIN_SQUARES..MAX_SQUARES) {
+                mutablelevelList.add(LevelVo(i.toLong(), "$i x $i", i, 0))
+            }
+            val levelList: List<LevelVo> =RepositoryManager.getLevels()?:mutablelevelList
             withContext(Dispatchers.Main) {
                 loadLevelsMutableLiveData.value = levelList
+                loadingMutableLiveData.value = false
             }
         }
     }
