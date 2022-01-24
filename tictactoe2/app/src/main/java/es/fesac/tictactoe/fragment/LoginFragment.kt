@@ -66,7 +66,7 @@ class LoginFragment : BaseFragment() {
 
     private fun setUpViews() {
         binding?.loginBtnEnter?.setOnClickListener {
-            viewModel.login(getEmail(), getPassword())
+            viewModel.login(requireContext(), getEmail(), getPassword())
         }
 
         binding?.loginTextNoHaveAccount?.setOnClickListener {

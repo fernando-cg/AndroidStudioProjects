@@ -1,10 +1,17 @@
 package es.fesac.tictactoe.fragment
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.viewModels
+import es.fesac.tictactoe.R
 import es.fesac.tictactoe.databinding.FragmentRegisterBinding
 import es.fesac.tictactoe.extension.showToast
 import es.fesac.tictactoe.viewmodel.RegisterViewModel
@@ -38,6 +45,10 @@ class RegisterFragment : BaseFragment() {
         })
     }
 
+    private fun goToHome() {
+        getNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
+    }
+
     private fun setLoadingObserver() {
         viewModel.loadingLiveData().removeObservers(this)
         viewModel.loadingLiveData().observe(this, { loading ->
@@ -58,12 +69,26 @@ class RegisterFragment : BaseFragment() {
     private fun setUpViews() {
         binding?.registerBtnCreateAccount?.setOnClickListener {
             viewModel.register(
-                context=requireContext(),
+                context = requireContext(),
                 user = getUser(),
                 email = getEmail(),
                 check = isCheck(),
                 password = getPassword()
             )
+        }
+        setUpPasswordValidator()
+    }
+
+    private fun setUpPasswordValidator() {
+        binding?.registerInputPasswordRepeat?.addTextChangedListener {
+            val passwordRepeat = it.toString()
+            val match = getPassword().contains(passwordRepeat, false)
+            val colorResId = if (match) {
+                R.color.black
+            } else {
+                R.color.red
+            }
+            binding?.registerInputPasswordRepeat?.setTextColor(ResourcesCompat.getColor(resources, colorResId, null))
         }
     }
 
@@ -79,6 +104,10 @@ class RegisterFragment : BaseFragment() {
         return binding?.registerInputPassword?.text?.toString() ?: ""
     }
 
+    private fun getPasswordRepeat(): String {
+        return binding?.registerInputPasswordRepeat?.text?.toString() ?: ""
+    }
+
     private fun isCheck(): Boolean {
         return binding?.registerCheckAcceptTerms?.isChecked ?: false
     }
@@ -86,9 +115,5 @@ class RegisterFragment : BaseFragment() {
     override fun onDestroy() {
         binding = null
         super.onDestroy()
-    }
-
-    private fun goToHome(){
-        getNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
     }
 }
