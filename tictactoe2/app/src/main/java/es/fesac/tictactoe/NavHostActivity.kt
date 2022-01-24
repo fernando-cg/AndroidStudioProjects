@@ -9,6 +9,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import com.google.firebase.ktx.initialize
 import es.fesac.tictactoe.databinding.NavHostActivityBinding
 import es.fesac.tictactoe.extension.gone
 import es.fesac.tictactoe.extension.visible

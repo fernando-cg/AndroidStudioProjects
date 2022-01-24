@@ -5,14 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
-import es.fesac.tictactoe.databinding.FragmentLoginBinding
+import es.fesac.tictactoe.databinding.FragmentRegisterBinding
 import es.fesac.tictactoe.extension.showToast
-import es.fesac.tictactoe.viewmodel.LoginViewModel
+import es.fesac.tictactoe.viewmodel.RegisterViewModel
 
-class LoginFragment : BaseFragment() {
-    private var binding: FragmentLoginBinding? = null
-    private val viewModel: LoginViewModel by viewModels()
+class RegisterFragment : BaseFragment() {
+    private var binding: FragmentRegisterBinding? = null
+    private val viewModel: RegisterViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +30,8 @@ class LoginFragment : BaseFragment() {
     }
 
     private fun setLoginSuccessObserver() {
-        viewModel.successLoginLiveData().removeObservers(this)
-        viewModel.successLoginLiveData().observe(this, { success ->
+        viewModel.successRegisterLiveData().removeObservers(this)
+        viewModel.successRegisterLiveData().observe(this, { success ->
             if (success) {
                 goToHome()
             }
@@ -51,39 +50,45 @@ class LoginFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentLoginBinding.inflate(layoutInflater)
+        binding = FragmentRegisterBinding.inflate(inflater)
         setUpViews()
         return binding?.root
     }
 
-    private fun goToHome() {
-        getNavController()?.navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
-    }
-
-    private fun goToRegister() {
-        getNavController()?.navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
-    }
-
     private fun setUpViews() {
-        binding?.loginBtnEnter?.setOnClickListener {
-            viewModel.login(getEmail(), getPassword())
+        binding?.registerBtnCreateAccount?.setOnClickListener {
+            viewModel.register(
+                context=requireContext(),
+                user = getUser(),
+                email = getEmail(),
+                check = isCheck(),
+                password = getPassword()
+            )
         }
+    }
 
-        binding?.loginTextNoHaveAccount?.setOnClickListener {
-            goToRegister()
-        }
+    private fun getUser(): String {
+        return binding?.registerInputUser?.text?.toString() ?: ""
     }
 
     private fun getEmail(): String {
-        return binding?.loginInputUser?.text.toString()
+        return binding?.registerInputEmail?.text?.toString() ?: ""
     }
 
     private fun getPassword(): String {
-        return binding?.loginInputPassword?.text.toString()
+        return binding?.registerInputPassword?.text?.toString() ?: ""
+    }
+
+    private fun isCheck(): Boolean {
+        return binding?.registerCheckAcceptTerms?.isChecked ?: false
     }
 
     override fun onDestroy() {
         binding = null
         super.onDestroy()
+    }
+
+    private fun goToHome(){
+        getNavController()?.navigate(RegisterFragmentDirections.actionRegisterFragmentToHomeFragment())
     }
 }

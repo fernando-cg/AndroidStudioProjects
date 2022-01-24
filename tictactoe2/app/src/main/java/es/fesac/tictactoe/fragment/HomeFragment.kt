@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import es.fesac.tictactoe.NavHostActivity
+import es.fesac.tictactoe.R
 import es.fesac.tictactoe.databinding.FragmentHomeBinding
 import es.fesac.tictactoe.viewmodel.HomeViewModel
 
@@ -30,6 +31,16 @@ class HomeFragment : BaseFragment() {
         viewModel.loadingLiveData.removeObservers(this)
         viewModel.loadingLiveData.observe(this, { loading ->
             showLoading(loading)
+        })
+        setLogoutSuccessObserver()
+    }
+
+    private fun setLogoutSuccessObserver() {
+        viewModel.logoutSuccessLiveData().removeObservers(this)
+        viewModel.logoutSuccessLiveData().observe(this, { logoutSuccess ->
+            if (logoutSuccess) {
+                setUpLoginBtn()
+            }
         })
     }
 
@@ -55,8 +66,22 @@ class HomeFragment : BaseFragment() {
             goToGame("single")
         }
         binding.mainBtnLogin.setOnClickListener {
-            goToLogin()
+            if (viewModel.isUserLogged()) {
+                viewModel.logout()
+            } else {
+                goToLogin()
+            }
         }
+        setUpLoginBtn()
+    }
+
+    private fun setUpLoginBtn() {
+        val textResId = if (viewModel.isUserLogged()) {
+            R.string.logout
+        } else {
+            R.string.login
+        }
+        binding.mainBtnLogin.text = getString(textResId)
     }
 
     private fun goToLogin() {
@@ -66,5 +91,4 @@ class HomeFragment : BaseFragment() {
     private fun goToGame(gameType: String) {
         getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment(gameType = gameType))
     }
-
 }

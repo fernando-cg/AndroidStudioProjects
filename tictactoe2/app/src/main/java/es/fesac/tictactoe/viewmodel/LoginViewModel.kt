@@ -1,17 +1,17 @@
 package es.fesac.tictactoe.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import java.lang.Exception
-import java.util.*
 
 class LoginViewModel : ViewModel() {
     private val loadingMutableLiveData by lazy {
@@ -33,16 +33,19 @@ class LoginViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 loadingMutableLiveData.value = true
             }
-           val error= try {
+
+            val error: String? = try {
                 Firebase.auth.signInWithEmailAndPassword(email, password).await()
-            }catch (exception: Exception){
+                null
+            } catch (exception: Exception) {
                 exception.localizedMessage
             }
             val loginSuccess = error == null
+
             withContext(Dispatchers.Main) {
                 loadingMutableLiveData.value = false
                 successLoginMutableLiveData.value = loginSuccess
-                errorMutableLiveData.value = error.toString()
+                errorMutableLiveData.value = error
             }
         }
     }
