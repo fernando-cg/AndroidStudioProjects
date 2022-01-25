@@ -23,7 +23,6 @@ object RemoteManager {
      * dicho método.
      */
 
-    //Chequear que se retornen los tipos de errores,
     suspend fun loginWithUser(context: Context, userName: String, password: String): String? {
         return try {
             val snapshot = Firebase.firestore

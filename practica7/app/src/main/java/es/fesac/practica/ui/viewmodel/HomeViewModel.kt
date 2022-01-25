@@ -39,7 +39,7 @@ class HomeViewModel : ViewModel() {
             withContext(Dispatchers.Main) {
                 loadingMutableLiveData.value = true
             }
-            //Preguntar esto
+
             val mutablelevelList = mutableListOf<LevelVo>()
             for (i in MIN_SQUARES..MAX_SQUARES) {
                 mutablelevelList.add(LevelVo(i.toLong(), "$i x $i", i, 0))

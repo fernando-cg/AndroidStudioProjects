@@ -63,7 +63,7 @@ class LoginFragment : BaseFragment() {
         }
 
         binding?.loginBtnEnter?.setOnClickListener {
-            //Preguntar esto
+
             viewModel.login(requireContext(),getUserFromInput(), getPasswordFromInput())
         }
 
