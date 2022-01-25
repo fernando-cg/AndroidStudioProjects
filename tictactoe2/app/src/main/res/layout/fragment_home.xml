@@ -45,6 +45,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:visibility="visible" />
 
+
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/main_btn_single_player"
         android:layout_width="0dp"
@@ -55,6 +56,19 @@
         android:text="@string/single_player"
         android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@id/main_btn_multiplayer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/main_btn_history"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/margin_horizontal"
+        android:layout_marginBottom="@dimen/vertical_space_btn"
+        android:background="@drawable/bg_main_btn"
+        android:text="@string/history"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/main_btn_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,4 +84,5 @@
         app:layout_constraintBottom_toTopOf="@id/main_btn_single_player"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
     <fragment
         android:id="@+id/gameFragment"
@@ -55,4 +58,8 @@
             android:id="@+id/action_registerFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="es.fesac.tictactoe.fragment.HistoryFragment"
+        android:label="HistoryFragment" />
 </navigation>

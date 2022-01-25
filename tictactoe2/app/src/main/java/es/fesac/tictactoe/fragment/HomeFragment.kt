@@ -72,7 +72,14 @@ class HomeFragment : BaseFragment() {
                 goToLogin()
             }
         }
+        binding.mainBtnHistory.setOnClickListener {
+            goToHistory()
+        }
         setUpLoginBtn()
+    }
+
+    private fun goToHistory() {
+        getNavController()?.navigate(HomeFragmentDirections.actionHomeFragmentToHistoryFragment())
     }
 
     private fun setUpLoginBtn() {
