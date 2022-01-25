@@ -16,7 +16,7 @@ data class UserBo(
     val id: String = "",
     val email: String = "",
     val user: String = "",
-    val recordMap: Map<String,String> = mapOf()
+    val recordMap: Map<String,Int> = mapOf()
 )
 
 fun UserBo.toMap() = mapOf<String,Any>(

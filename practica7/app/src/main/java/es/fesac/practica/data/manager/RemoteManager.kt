@@ -73,7 +73,7 @@ object RemoteManager {
                         id = userLogged.uid,
                         email = email,
                         user = user,
-                        recordMap = mapOf("1" to "0", "2" to "0", "3" to "0", "4" to "0")
+                        recordMap = mapOf("1" to 0, "2" to 0, "3" to 0, "4" to 0)
                     )
                     Firebase.firestore
                         .collection(COLLECTION_USERS)
