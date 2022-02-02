@@ -5,36 +5,47 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import es.fesac.tictactoe.common.APP_SETTINGS_COLLECTION
+import es.fesac.tictactoe.model.AppSettingsBo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 
 class HomeViewModel : ViewModel() {
 
-    private val multiplayerMutableLiveData = MutableLiveData<Boolean>()
+    private val appSettingsMutableLiveData = MutableLiveData<AppSettingsBo?>()
     private val loadingMutableLiveData = MutableLiveData<Boolean>()
     private val logoutSuccessMutableLiveData by lazy {
         MutableLiveData<Boolean>()
     }
 
-    val multiplayerLiveData: LiveData<Boolean> = multiplayerMutableLiveData
+    val appSettingsLiveData: LiveData<AppSettingsBo?> = appSettingsMutableLiveData
     val loadingLiveData: LiveData<Boolean> = loadingMutableLiveData
 
     fun logoutSuccessLiveData(): LiveData<Boolean> = logoutSuccessMutableLiveData
 
-    fun getMultiplayerState() {
+    fun getAppSettingsState() {
         viewModelScope.launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
-                multiplayerMutableLiveData.value = false
                 loadingMutableLiveData.value = true
             }
 
-            delay(4000)
+            var appSettings: AppSettingsBo? = null
+            val snapshot = Firebase.firestore
+                .collection(APP_SETTINGS_COLLECTION)
+                .document("1")
+                .get()
+                .await()
+            snapshot?.let { document ->
+                appSettings = document.toObject(AppSettingsBo::class.java)
+            }
 
             withContext(Dispatchers.Main) {
-                multiplayerMutableLiveData.value = true
+                appSettingsMutableLiveData.value = appSettings
                 loadingMutableLiveData.value = false
             }
         }

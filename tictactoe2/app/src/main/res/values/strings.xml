@@ -4,6 +4,7 @@
     <string name="multiplayer">Multiplayer</string>
     <string name="single_player">Single player</string>
     <string name="login">Login</string>
+    <string name="history">History</string>
     <string name="logout">Logout</string>
     <string name="game__content_description_circle_chance">Circle chance indicator</string>
 
@@ -36,5 +37,4 @@
     <string name="register__error_user_exist">User already register</string>
 
     <string name="content_description__ic_close">Icon close</string>
-    <string name="history">history</string>
 </resources>
