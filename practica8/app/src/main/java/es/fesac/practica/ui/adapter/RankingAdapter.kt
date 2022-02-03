@@ -47,7 +47,7 @@ class RankingAdapter(private var dataSet:List<UserRankingVo>) : RecyclerView.Ada
                 .with(context)
                 .load(UserRanking.userImgUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
-                .centerCrop()
+                .fitCenter()
                 .into(binding.image)
         }
     }

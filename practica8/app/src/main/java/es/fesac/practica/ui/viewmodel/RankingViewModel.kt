@@ -49,7 +49,7 @@ class RankingViewModel : ViewModel() {
                  scoreVisualList = scoreList?.map{ element ->
                     element.toVo()
                 }
-                scoreVisualList?.sortedByDescending { element ->
+                scoreVisualList = scoreVisualList?.sortedByDescending { element ->
                     element.score
                 }
                 null
