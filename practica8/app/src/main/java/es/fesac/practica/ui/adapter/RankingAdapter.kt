@@ -19,7 +19,7 @@ class RankingAdapter(private var dataSet:List<UserRankingVo>) : RecyclerView.Ada
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RankingAdapter.ViewHolder {
         val binding = ItemUserRankingBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        return ViewHolder(binding,parent.context)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: RankingAdapter.ViewHolder, position: Int) {
@@ -35,7 +35,7 @@ class RankingAdapter(private var dataSet:List<UserRankingVo>) : RecyclerView.Ada
         notifyItemRangeInserted(0, itemCount)
     }
 
-    inner class ViewHolder(private val binding: ItemUserRankingBinding,private val context : Context) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(private val binding: ItemUserRankingBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: UserRankingVo) {
             binding.itemScoreLabelUser.text = item.userName
             binding.itemScoreLabelScore.text = item.score.toString()
@@ -44,7 +44,7 @@ class RankingAdapter(private var dataSet:List<UserRankingVo>) : RecyclerView.Ada
 
         private fun setUpLogo(UserRanking: UserRankingVo) {
             Glide
-                .with(context)
+                .with(binding.root.context)
                 .load(UserRanking.userImgUrl)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .fitCenter()
