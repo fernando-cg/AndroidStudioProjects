@@ -32,7 +32,8 @@
 
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="@dimen/min_space"
+            app:layout_constraintBottom_toTopOf="@id/item_score__label__score"
+
 
             android:gravity="center"
             android:textStyle="bold"
@@ -47,9 +48,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+
             app:layout_constraintStart_toEndOf="@id/image"
             app:layout_constraintTop_toBottomOf="@id/item_score__label__user"
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
 
             android:gravity="center"
             android:textStyle="normal"
