@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BasicBtn">
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/btn_size</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MainFilledBtn" parent="BasicBtn">
+        <item name="android:background">@drawable/bg_main_filled_and_ripple_btn</item>
+    </style>
+
+    <style name="SecondaryFilledBtn" parent="BasicBtn">
+        <item name="android:background">@drawable/bg_secondary_filled_and_ripple_btn</item>
+    </style>
+
+    <style name="RegisterInput">
+        <item name="android:background">@color/color_2</item>
+        <item name="android:imeOptions">actionNext</item>
+        <item name="android:padding">@dimen/vertical_space</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textColorHint">@color/text_grey</item>
+        <item name="android:textSize">@dimen/input_size</item>
+    </style>
+
+    <style name="NoToolbarTitle">
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="TitleTextGrey" parent="Text">
+        <item name="android:textColor">@color/text_grey</item>
+    </style>
+
+    <style name="TitleTextWhite" parent="Text">
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+
+    <style name="Text">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="GameTitle">
+        <item name="android:padding">@dimen/padding_default</item>
+        <item name="android:textColor">@color/text_black</item>
+        <item name="android:textSize">@dimen/title_size</item>
+    </style>
+
+    <style name="GameValue">
+        <item name="android:padding">@dimen/padding_default</item>
+        <item name="android:textColor">@color/text_white</item>
+        <item name="android:textSize">@dimen/value_size</item>
+    </style>
+
+    <style name="TextLoading">
+        <item name="android:textSize">30sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="TextLoadingBlack" parent="TextLoading">
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
+    <style name="TextLoadingGrey" parent="TextLoading">
+        <item name="android:textColor">@color/text_grey</item>
+    </style>
+
+    <style name="TextLoadingWhite" parent="TextLoading">
+        <item name="android:textColor">@color/text_white</item>
+    </style>
+</resources>
