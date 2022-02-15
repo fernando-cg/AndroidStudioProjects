@@ -25,14 +25,8 @@ object RankingLocalManager{
                 DB_NAME
             ).build()
             val rankingList = db.getUserRankingDao().getAllUserRankingList()
-            if (rankingList.isEmpty()) {
-                val remoterankingList = RankingRemoteManager.getRankingList() //Preguntar esto y cambiar
-                remoterankingList?.let { RankingLocalManager.saveRankingList(it) }
-                remoterankingList
-            }else{
-                rankingList.map { entity ->
-                    entity.toBo()
-                }
+            rankingList.map { entity ->
+                entity.toBo()
             }
         }catch (exception: Exception){
             Log.e("excepcion","Se ha producido un error")

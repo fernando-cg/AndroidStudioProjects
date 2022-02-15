@@ -9,7 +9,7 @@ import es.fesac.tictactoe.model.ScoreBo
 import java.text.SimpleDateFormat
 import java.util.*
 
-class ScoreAdapter(private var dataSet: List<ScoreBo>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ScoreAdapter(private var dataSet: List<ScoreBo>,val clickAction: (String) -> Unit) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val headerId = 0
     private val itemId = 1
@@ -82,6 +82,9 @@ class ScoreAdapter(private var dataSet: List<ScoreBo>) : RecyclerView.Adapter<Re
     inner class ViewHolder(private val binding: ItemScoreBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: ScoreBo) {
             binding.itemScoreLabelScore.text = item.score
+            binding.root.setOnClickListener{
+                clickAction(item.score)
+            }
         }
     }
 

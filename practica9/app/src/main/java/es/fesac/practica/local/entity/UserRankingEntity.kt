@@ -15,6 +15,6 @@ import androidx.room.PrimaryKey
 data class UserRankingEntity(
     @PrimaryKey @ColumnInfo(name="user_id") val userId:Long,
     @ColumnInfo(name="user_name") val userName:String,
-    val score:Long,
+    val score:Int,
     @ColumnInfo(name="user_img_url") val userImgUrl:String
 )

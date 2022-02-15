@@ -26,15 +26,10 @@ object LevelLocalManager{
                 MyDatabase::class.java,
                 DB_NAME).build()
             val levelList = db.getLevelDao().getAllLevelList()
-            if (levelList.isEmpty()) {
-                val remoteLevelList = LevelRemoteManager.getLevels() //Preguntar esto y cambiar
-                remoteLevelList?.let { saveLevelList(it) }
-                remoteLevelList
-            }else{
-                levelList.map { entity ->
-                    entity.toBo()
-                }
+            levelList.map { entity ->
+                entity.toBo()
             }
+
         }catch (exception: Exception){
             Log.e("excepcion","Se ha producido un error")
             null

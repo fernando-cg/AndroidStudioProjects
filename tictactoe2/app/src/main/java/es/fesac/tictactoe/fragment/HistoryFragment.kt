@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.divider.MaterialDividerItemDecoration
 import es.fesac.tictactoe.adapter.ScoreAdapter
@@ -28,9 +27,9 @@ class HistoryFragment : BaseFragment() {
 
     private fun setScoreListObserver() {
         viewModel.getScoreListLiveData().removeObservers(this)
-        viewModel.getScoreListLiveData().observe(this, { list ->
+        viewModel.getScoreListLiveData().observe(this) { list ->
             updateScoreList(list)
-        })
+        }
     }
 
     private fun updateScoreList(list: List<ScoreBo>) {
@@ -39,18 +38,18 @@ class HistoryFragment : BaseFragment() {
 
     private fun setErrorObserver() {
         viewModel.getErrorLiveData().removeObservers(this)
-        viewModel.getErrorLiveData().observe(this, { error ->
+        viewModel.getErrorLiveData().observe(this) { error ->
             error?.let {
                 showToast(error)
             }
-        })
+        }
     }
 
     private fun setLoadingObserver() {
         viewModel.getLoadingLiveData().removeObservers(this)
-        viewModel.getLoadingLiveData().observe(this, { loading ->
+        viewModel.getLoadingLiveData().observe(this) { loading ->
             showLoading(loading)
-        })
+        }
     }
 
     override fun onCreateView(
@@ -66,7 +65,9 @@ class HistoryFragment : BaseFragment() {
 
     private fun setUpViews() {
         val list = mutableListOf<ScoreBo>()
-        adapter = ScoreAdapter(dataSet = list)
+        adapter = ScoreAdapter(dataSet = list) {
+            showToast(it)
+        }
         val divider = MaterialDividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         binding?.historyRecyclerItems?.addItemDecoration(divider)
         binding?.historyRecyclerItems?.adapter = adapter

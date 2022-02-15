@@ -8,7 +8,7 @@ fun UserRankingEntity.toBo() : UserRankingBo {
     return UserRankingBo(
         userId = userId.toString(),
         userName = userName,
-        score = score,
+        score = score.toLong(),
         userImgUrl = userImgUrl
     )
 }
@@ -17,7 +17,7 @@ fun UserRankingBo.toEntity() : UserRankingEntity {
     return UserRankingEntity(
         userId = userId.toLong(),
         userName = userName,
-        score = score,
+        score = score.toInt(),
         userImgUrl = userImgUrl
     )
 }
